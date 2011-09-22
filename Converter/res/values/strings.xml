@@ -4,6 +4,7 @@
     <string name="app_name">Converter</string>
     <string name="spn_from_title">From</string>
     <string name="spn_to_title">To</string>
+    <string name="base_title">Base Converter</string>
     <string-array name="list_item_array">
     	<item>Numeric Base</item>
     </string-array>

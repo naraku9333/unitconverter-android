@@ -93,6 +93,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			}
 		}
 	}
+	
 	/**
 	 * ConverterActivity.java
 	 * @author Sean Vogel 
@@ -177,7 +178,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		//place holders for bases over 10
 		String digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
 		
-		String temp = "";
+		String temp = new String("");
 		
 		BigInteger rem; 
 		BigInteger nb = new BigInteger(Integer.toString(newBase));
@@ -187,12 +188,13 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			if(num.compareTo(nb) >= 0)
 			{
 				rem = num.mod(nb);
-				temp.concat(Character.toString(digits.charAt(rem.intValue())));
+				//char d = digits.charAt(rem.intValue());
+				temp= temp.concat(Character.toString(digits.charAt(rem.intValue())));
 				num = num.divide(nb); 
 			}
 			else
 			{
-				temp.concat(Character.toString(digits.charAt(num.intValue())));
+				temp = temp.concat(Character.toString(digits.charAt(num.intValue())));
 				num = BigInteger.ZERO;
 			}
 		}while(num.compareTo(BigInteger.ZERO) > 0);

@@ -19,7 +19,6 @@
     
     <EditText android:id="@+id/edtStartValue" 
     	android:layout_width="match_parent" 
-    	android:inputType="number" 
     	android:layout_height="wrap_content">
     </EditText>
     
