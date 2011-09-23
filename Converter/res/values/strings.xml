@@ -5,8 +5,21 @@
     <string name="spn_from_title">From</string>
     <string name="spn_to_title">To</string>
     <string name="base_title">Base Converter</string>
+    
     <string-array name="list_item_array">
     	<item>Numeric Base</item>
+    	<item>Temperature</item>
+    </string-array>
+    <string-array name="temp_array">
+    	<item>Celsius</item>
+    	<item>Fahreneit</item>
+    	<item>Kelvin</item>
+    </string-array>
+    <string-array name="empty_array">
+    	<item> </item>
+    	<item> </item>
+    	<item> </item>
+    	
     </string-array>
     <string-array name="base_array">
     	<item>2</item>

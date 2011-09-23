@@ -52,12 +52,31 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		 newVal = (Spinner) findViewById(R.id.spnTo);
 		 oldVal = (Spinner) findViewById(R.id.spnFrom);
 		 
-		//TODO: add switch for future conversions or find better solution
+		 ArrayAdapter<CharSequence> adapter;
+		 
 		 //fill ArrayAdapter with data from base_array
-		 ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, 
-				 R.array.base_array, android.R.layout.simple_spinner_item);
-		 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		 //end switch
+		 switch(UnitList.unit){
+		 case 0:
+			 setTitle("Base Converter");
+			  adapter = ArrayAdapter.createFromResource(this, 
+					 R.array.base_array, android.R.layout.simple_spinner_item);
+			 adapter.setDropDownViewResource(R.layout.list_item);
+			 break;
+			 
+		 case 1:
+			 setTitle("Temperature Converter");
+			  adapter = ArrayAdapter.createFromResource(this, 
+					 R.array.temp_array, android.R.layout.simple_spinner_item);
+			 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			 break;
+			 
+		 default:
+			 setTitle("Converter");
+			  adapter = ArrayAdapter.createFromResource(this, 
+					 R.array.empty_array, android.R.layout.simple_spinner_item);
+			 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			 break;
+		 }
 		 
 		 //attach adapters and listener
 		 oldVal.setAdapter(adapter);
@@ -76,24 +95,10 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		
 		switch(view.getId()){
 		case R.id.btnConvert:
-			Log.d(TAG,"ConverterActivity: btnConvert clicked, oldbase= "
-					+ intOldVal + ", newbase= " + intNewVal);//DBG
-			
-			if(intOldVal == 10){
-				String s = fromBaseTen(startValue.getText().toString(), intNewVal);
-				resultValue.setText(s);
-			}
-			else if(intNewVal == 10){
-				BigInteger res = toBaseTen(startValue.getText().toString(), intOldVal);
-				resultValue.setText(res.toString());
-			}
-			else{
-				resultValue.setText(fromBaseTen(toBaseTen(startValue.getText()
-						.toString(),intOldVal).toString(), intNewVal));
-			}
+			baseConvert();
 		}
 	}
-	
+
 	/**
 	 * ConverterActivity.java
 	 * @author Sean Vogel 
@@ -108,22 +113,56 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				int pos, long id) {
 			Log.d(TAG,"ConverterActivity: onItemSelected()");//DBG
 			
-			//set the correct variable depending on which spinner clicked
-			switch(parent.getId()){
+			//set the correct variable depending on which ListItem clicked
+			switch(UnitList.unit){
+			case 0://Base Converter
+				
+				if(parent.getId() == R.id.spnFrom)
+					intOldVal = Integer.parseInt(parent.getItemAtPosition(pos).toString());
 			
-			case R.id.spnFrom:
-				intOldVal = Integer.parseInt(parent.getItemAtPosition(pos).toString());
+				else if(parent.getId() == R.id.spnTo)
+					intNewVal = Integer.parseInt(parent.getItemAtPosition(pos).toString());
+				
 				break;
-			case R.id.spnTo:
-				intNewVal = Integer.parseInt(parent.getItemAtPosition(pos).toString());
+			case 1://Temperature Converter
+				if(parent.getId() == R.id.spnFrom)
+					intOldVal = pos;//Integer.parseInt(parent.getItemAtPosition(pos).toString());
+			
+				else if(parent.getId() == R.id.spnTo)
+					intNewVal = pos;//Integer.parseInt(parent.getItemAtPosition(pos).toString());
+				break;
+			default:
 				break;
 			}
 		}
+		
 
 		@Override
 		public void onNothingSelected(AdapterView<?> arg0) {
 			// TODO Auto-generated method stub
 			
+		}
+	}
+	
+	/**
+	 * 
+	 * Sean Sep 22, 2011
+	 */
+	private void baseConvert() {
+		Log.d(TAG,"ConverterActivity: baseConvert(), oldbase= "
+				+ intOldVal + ", newbase= " + intNewVal);//DBG
+		
+		if(intOldVal == 10){
+			String s = fromBaseTen(startValue.getText().toString(), intNewVal);
+			resultValue.setText(s);
+		}
+		else if(intNewVal == 10){
+			BigInteger res = toBaseTen(startValue.getText().toString(), intOldVal);
+			resultValue.setText(res.toString());
+		}
+		else{
+			resultValue.setText(fromBaseTen(toBaseTen(startValue.getText()
+					.toString(),intOldVal).toString(), intNewVal));
 		}
 	}
 	
