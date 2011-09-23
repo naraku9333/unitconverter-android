@@ -10,17 +10,24 @@
     	<item>Numeric Base</item>
     	<item>Temperature</item>
     </string-array>
+    
     <string-array name="temp_array">
     	<item>Celsius</item>
     	<item>Fahreneit</item>
     	<item>Kelvin</item>
+    	<item>Newton</item>
+    	<item>Delisle</item>
+    	<item>Rankine</item>
+    	<item>Reaumur</item>
+    	<item>Romer</item>
     </string-array>
+    
     <string-array name="empty_array">
     	<item> </item>
     	<item> </item>
     	<item> </item>
-    	
     </string-array>
+    
     <string-array name="base_array">
     	<item>2</item>
     	<item>3</item>

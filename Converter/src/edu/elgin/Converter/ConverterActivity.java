@@ -60,7 +60,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			 setTitle("Base Converter");
 			  adapter = ArrayAdapter.createFromResource(this, 
 					 R.array.base_array, android.R.layout.simple_spinner_item);
-			 adapter.setDropDownViewResource(R.layout.list_item);
+			 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			 break;
 			 
 		 case 1:
@@ -93,9 +93,14 @@ public class ConverterActivity extends Activity implements OnClickListener{
 	@Override
 	public void onClick(View view) {
 		
-		switch(view.getId()){
-		case R.id.btnConvert:
-			baseConvert();
+		if(view.getId() == R.id.btnConvert){
+			switch(UnitList.unit){
+			case 0:
+				baseConvert();
+				break;
+			case 1:
+				tempConverter(intOldVal, intNewVal);
+			}
 		}
 	}
 
@@ -240,5 +245,214 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		
 		//StringBuffer has a reverse, why not use it
 		return new StringBuffer(temp).reverse().toString();
+	}
+	
+	/**
+	 * 
+	 * Sean Sep 22, 2011
+	 * @param from	the index of item selected from spnFrom
+	 * @param to	the index of selected from spnTo
+	 * @return		conversion result
+	 * conversions formulas from:
+	 * http://en.wikipedia.org/wiki/Conversion_of_units_of_temperature
+	 */
+	private void tempConverter(int from, int to){
+		Log.d(TAG,"ConverterActivity: tempConverter(), from= " + from + ", to= " + to);//DBG
+		float start = Float.valueOf(startValue.getText().toString()), 
+				result = 0f;
+		
+		//this is UGLY ill break this up later
+		switch(from){
+		case 0:
+			switch(to){
+			
+			case 1://fahrenheit
+				result = start * 9/5 + 32;
+				break;
+			case 2://Kelvin
+				result = start + 273.15f;
+				break;
+			case 3://newton
+				result = start * 33/100;
+				break;
+			case 4://delisle
+				result = (100 - start) * 3/2;
+				break;
+			case 5://rankine
+				result = (start + 273.15f) * 9/5;
+				break;
+			case 6://reaumur
+				result = start * 4/5;
+				break;
+			case 7://romer
+				result = start * 21/40 + 7.5f;
+			default:
+				//send dialog error
+				break;
+			}
+			break;
+		case 1:
+			switch(to){
+			case 0://celsius
+				result = (start - 32) * 5/9;
+				break;
+			case 2://kelvin
+				result = (start + 459.67f) * 5/9;
+				break;
+			case 3://newton
+				result = (start - 32) * 11/60;
+				break;
+			case 4://delisle
+				result = (212 - start) * 5/6;
+				break;
+			case 5://rankine
+				result = start + 459.67f;
+				break;
+			case 6://reaumur
+				result = (start - 32) * 4/9;
+				break;
+			case 7://romer
+				result = (start - 32) * 7/24 +7.5f;
+				break;
+			default:
+				//send dialog error
+			}
+			break;
+		case 2:
+			switch(to){
+			case 0://celsius
+				break;
+			case 1://fahrenheit
+				break;
+			case 2://kelvin
+				break;
+			case 3://newton
+				break;
+			case 4://delisle
+				break;
+			case 5://rankine
+				break;
+			case 6://reaumur
+				break;
+			case 7://romer
+				break;
+			default:
+				//send dialog error
+			}
+			break;
+		case 3:
+			switch(to){
+			case 0://celsius
+				break;
+			case 1://fahrenheit
+				break;
+			case 2://kelvin
+				break;
+			case 3://newton
+				break;
+			case 4://delisle
+				break;
+			case 5://rankine
+				break;
+			case 6://reaumur
+				break;
+			case 7://romer
+				break;
+			default:
+				//send dialog error
+			}
+			break;
+		case 4:
+			switch(to){
+			case 0://celsius
+				break;
+			case 1://fahrenheit
+				break;
+			case 2://kelvin
+				break;
+			case 3://newton
+				break;
+			case 4://delisle
+				break;
+			case 5://rankine
+				break;
+			case 6://reaumur
+				break;
+			case 7://romer
+				break;
+			default:
+				//send dialog error
+			}
+			break;
+		case 5:
+			switch(to){
+			case 0://celsius
+				break;
+			case 1://fahrenheit
+				break;
+			case 2://kelvin
+				break;
+			case 3://newton
+				break;
+			case 4://delisle
+				break;
+			case 5://rankine
+				break;
+			case 6://reaumur
+				break;
+			case 7://romer
+				break;
+			default:
+				//send dialog error
+			}
+			break;
+		case 6:
+			switch(to){
+			case 0://celsius
+				break;
+			case 1://fahrenheit
+				break;
+			case 2://kelvin
+				break;
+			case 3://newton
+				break;
+			case 4://delisle
+				break;
+			case 5://rankine
+				break;
+			case 6://reaumur
+				break;
+			case 7://romer
+				break;
+			default:
+				//send dialog error
+			}
+			break;
+		case 7:
+			switch(to){
+			case 0://celsius
+				break;
+			case 1://fahrenheit
+				break;
+			case 2://kelvin
+				break;
+			case 3://newton
+				break;
+			case 4://delisle
+				break;
+			case 5://rankine
+				break;
+			case 6://reaumur
+				break;
+			case 7://romer
+				break;
+			default:
+				//send dialog error
+			}
+			break;
+		}
+		
+		//return result;
+		resultValue.setText(String.valueOf(result));
 	}
 }
