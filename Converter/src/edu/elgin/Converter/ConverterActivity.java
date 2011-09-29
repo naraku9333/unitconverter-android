@@ -1,7 +1,6 @@
 package edu.elgin.Converter;
 
 import java.math.BigInteger;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,8 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-
-
+import edu.elgin.Converter.BaseConversion;
+import edu.elgin.Converter.TempConversion;
 
 /**
  * @author Sean Vogel 
@@ -30,7 +29,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 	private Button convertButton;
 	private Spinner oldVal, newVal;
 	private int intOldVal, intNewVal;
-	
+	private Object b;
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
@@ -54,13 +53,14 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		 
 		 ArrayAdapter<CharSequence> adapter;
 		 
-		 //fill ArrayAdapter with data from base_array
+		 //fill ArrayAdapter with data from correct array
 		 switch(UnitList.unit){
 		 case 0:
 			 setTitle("Base Converter");
 			  adapter = ArrayAdapter.createFromResource(this, 
 					 R.array.base_array, android.R.layout.simple_spinner_item);
 			 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			 b = new BaseConversion();
 			 break;
 			 
 		 case 1:
@@ -68,6 +68,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			  adapter = ArrayAdapter.createFromResource(this, 
 					 R.array.temp_array, android.R.layout.simple_spinner_item);
 			 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			 b = new TempConversion();
 			 break;
 			 
 		 default:
@@ -99,7 +100,12 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				baseConvert();
 				break;
 			case 1:
-				tempConverter(intOldVal, intNewVal);
+				//get value from editbox
+				double start = Float.valueOf(startValue.getText().toString()), 
+                result = 0d;
+
+				result = ((TempConversion) b).tempConverter(intOldVal, intNewVal, start);
+				resultValue.setText(String.valueOf(result));
 			}
 		}
 	}
@@ -157,302 +163,21 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		Log.d(TAG,"ConverterActivity: baseConvert(), oldbase= "
 				+ intOldVal + ", newbase= " + intNewVal);//DBG
 		
+		/*BaseConversion b = new BaseConversion();*/
+		
 		if(intOldVal == 10){
-			String s = fromBaseTen(startValue.getText().toString(), intNewVal);
+			String s = ((BaseConversion) b).fromBaseTen(startValue.getText().toString(), intNewVal);
 			resultValue.setText(s);
 		}
 		else if(intNewVal == 10){
-			BigInteger res = toBaseTen(startValue.getText().toString(), intOldVal);
+			BigInteger res = ((BaseConversion) b).toBaseTen(startValue.getText().toString(), intOldVal);
 			resultValue.setText(res.toString());
 		}
 		else{
-			resultValue.setText(fromBaseTen(toBaseTen(startValue.getText()
+			resultValue.setText(((BaseConversion) b).fromBaseTen(((BaseConversion) b).toBaseTen(startValue.getText()
 					.toString(),intOldVal).toString(), intNewVal));
 		}
 	}
 	
-	//TODO:move conversions to separate class(s)
-	/**
-	 * 
-	 * Sean Sep 21, 2011
-	 * @param num
-	 * @param oldBase
-	 * @return BigInteger result
-	 * 
-	 * converts from any base(2 - 36) to base 10
-	 */
-	private BigInteger toBaseTen(String num, int oldBase){
-		Log.d(TAG,"ConverterActivity: toBaseTen(), num= " + num + ", oldbase=" + oldBase);//DBG
-		
-		BigInteger result = BigInteger.ZERO;
-		
-		num = num.toUpperCase();
-		int len = num.length();
-		
-		//using BigIntegers to work with EXTREMELY large numbers
-		BigInteger bigOldBase = new BigInteger(Integer.toString(oldBase));
-		BigInteger temp, index;
-		
-		String digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		for(int i = 0; i < len; i++)
-		{
-			index = new BigInteger(Integer.toString(digits.indexOf(num.charAt((len-1)-i))));
-			temp = BigInteger.ZERO;
-			temp = index.multiply(bigOldBase.pow(i));
-			result = result.add(temp);
-		}
-		
-		return result;
-	}
 	
-	/**
-	 * 
-	 * Sean Sep 20, 2011
-	 * @param orig
-	 * @param newBase
-	 * @return String result
-	 * 
-	 * converts to any base(2 - 36) from base 10 
-	 */
-	private String fromBaseTen(String orig, int newBase){
-		Log.d(TAG,"ConverterActivity: fromBaseTen(), orig= " + orig + ", newBase= "+newBase);//DBG
-		
-		BigInteger num = new BigInteger(orig);
-
-		//place holders for bases over 10
-		String digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
-		
-		String temp = new String("");
-		
-		BigInteger rem; 
-		BigInteger nb = new BigInteger(Integer.toString(newBase));
-		
-		//convert and store in temp backwards
-		do{
-			if(num.compareTo(nb) >= 0)
-			{
-				rem = num.mod(nb);
-				//char d = digits.charAt(rem.intValue());
-				temp= temp.concat(Character.toString(digits.charAt(rem.intValue())));
-				num = num.divide(nb); 
-			}
-			else
-			{
-				temp = temp.concat(Character.toString(digits.charAt(num.intValue())));
-				num = BigInteger.ZERO;
-			}
-		}while(num.compareTo(BigInteger.ZERO) > 0);
-		
-		//StringBuffer has a reverse, why not use it
-		return new StringBuffer(temp).reverse().toString();
-	}
-	
-	/**
-	 * 
-	 * Sean Sep 22, 2011
-	 * @param from	the index of item selected from spnFrom
-	 * @param to	the index of selected from spnTo
-	 * @return		conversion result
-	 * conversions formulas from:
-	 * http://en.wikipedia.org/wiki/Conversion_of_units_of_temperature
-	 */
-	private void tempConverter(int from, int to){
-		Log.d(TAG,"ConverterActivity: tempConverter(), from= " + from + ", to= " + to);//DBG
-		float start = Float.valueOf(startValue.getText().toString()), 
-				result = 0f;
-		
-		//this is UGLY ill break this up later
-		switch(from){
-		case 0:
-			switch(to){
-			
-			case 1://fahrenheit
-				result = start * 9/5 + 32;
-				break;
-			case 2://Kelvin
-				result = start + 273.15f;
-				break;
-			case 3://newton
-				result = start * 33/100;
-				break;
-			case 4://delisle
-				result = (100 - start) * 3/2;
-				break;
-			case 5://rankine
-				result = (start + 273.15f) * 9/5;
-				break;
-			case 6://reaumur
-				result = start * 4/5;
-				break;
-			case 7://romer
-				result = start * 21/40 + 7.5f;
-			default:
-				//send dialog error
-				break;
-			}
-			break;
-		case 1:
-			switch(to){
-			case 0://celsius
-				result = (start - 32) * 5/9;
-				break;
-			case 2://kelvin
-				result = (start + 459.67f) * 5/9;
-				break;
-			case 3://newton
-				result = (start - 32) * 11/60;
-				break;
-			case 4://delisle
-				result = (212 - start) * 5/6;
-				break;
-			case 5://rankine
-				result = start + 459.67f;
-				break;
-			case 6://reaumur
-				result = (start - 32) * 4/9;
-				break;
-			case 7://romer
-				result = (start - 32) * 7/24 +7.5f;
-				break;
-			default:
-				//send dialog error
-			}
-			break;
-		case 2:
-			switch(to){
-			case 0://celsius
-				break;
-			case 1://fahrenheit
-				break;
-			case 2://kelvin
-				break;
-			case 3://newton
-				break;
-			case 4://delisle
-				break;
-			case 5://rankine
-				break;
-			case 6://reaumur
-				break;
-			case 7://romer
-				break;
-			default:
-				//send dialog error
-			}
-			break;
-		case 3:
-			switch(to){
-			case 0://celsius
-				break;
-			case 1://fahrenheit
-				break;
-			case 2://kelvin
-				break;
-			case 3://newton
-				break;
-			case 4://delisle
-				break;
-			case 5://rankine
-				break;
-			case 6://reaumur
-				break;
-			case 7://romer
-				break;
-			default:
-				//send dialog error
-			}
-			break;
-		case 4:
-			switch(to){
-			case 0://celsius
-				break;
-			case 1://fahrenheit
-				break;
-			case 2://kelvin
-				break;
-			case 3://newton
-				break;
-			case 4://delisle
-				break;
-			case 5://rankine
-				break;
-			case 6://reaumur
-				break;
-			case 7://romer
-				break;
-			default:
-				//send dialog error
-			}
-			break;
-		case 5:
-			switch(to){
-			case 0://celsius
-				break;
-			case 1://fahrenheit
-				break;
-			case 2://kelvin
-				break;
-			case 3://newton
-				break;
-			case 4://delisle
-				break;
-			case 5://rankine
-				break;
-			case 6://reaumur
-				break;
-			case 7://romer
-				break;
-			default:
-				//send dialog error
-			}
-			break;
-		case 6:
-			switch(to){
-			case 0://celsius
-				break;
-			case 1://fahrenheit
-				break;
-			case 2://kelvin
-				break;
-			case 3://newton
-				break;
-			case 4://delisle
-				break;
-			case 5://rankine
-				break;
-			case 6://reaumur
-				break;
-			case 7://romer
-				break;
-			default:
-				//send dialog error
-			}
-			break;
-		case 7:
-			switch(to){
-			case 0://celsius
-				break;
-			case 1://fahrenheit
-				break;
-			case 2://kelvin
-				break;
-			case 3://newton
-				break;
-			case 4://delisle
-				break;
-			case 5://rankine
-				break;
-			case 6://reaumur
-				break;
-			case 7://romer
-				break;
-			default:
-				//send dialog error
-			}
-			break;
-		}
-		
-		//return result;
-		resultValue.setText(String.valueOf(result));
-	}
 }
