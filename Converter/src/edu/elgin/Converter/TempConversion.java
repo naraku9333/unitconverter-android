@@ -10,6 +10,9 @@ import android.util.Log;
  * Sep 28, 2011
  * 
  * Temperature Conversion Class
+ * 
+ * formulas and test data from:
+ * http://en.wikipedia.org/wiki/Conversion_of_units_of_temperature
  */
 public class TempConversion {
 
@@ -26,11 +29,9 @@ public class TempConversion {
 	 */
 	public  double tempConverter(int fromTemp, int toTemp, double startValue){
 		Log.d(TAG,"ConverterActivity: tempConverter(), from= " + fromTemp + ", to= " + toTemp);//DBG
+		
 		double resultValue = 0d;
 		
-		//TODO FIX PRECISSION IN RETURN VALUES
-		//it is messing up the return values 
-		//this is UGLY ill break this up later
 		switch(fromTemp){
 		case 0://Celsius
 			resultValue = celsiusToAll(toTemp, startValue);
@@ -42,126 +43,32 @@ public class TempConversion {
 			resultValue = kelvinToAll(toTemp, startValue);
 			break;
 		case 3://Newton
-			switch(toTemp){
-			case 0://celsius
-				break;
-			case 1://fahrenheit
-				break;
-			case 2://kelvin
-				break;
-			case 3://newton
-				break;
-			case 4://delisle
-				break;
-			case 5://rankine
-				break;
-			case 6://reaumur
-				break;
-			case 7://romer
-				break;
-			default:
-				//send dialog error
-			}
+			resultValue = newtonToAll(toTemp, startValue);
 			break;
 		case 4://Delisle
-			switch(toTemp){
-			case 0://celsius
-				break;
-			case 1://fahrenheit
-				break;
-			case 2://kelvin
-				break;
-			case 3://newton
-				break;
-			case 4://delisle
-				break;
-			case 5://rankine
-				break;
-			case 6://reaumur
-				break;
-			case 7://romer
-				break;
-			default:
-				//send dialog error
-			}
+			resultValue = delisleToAll(toTemp, startValue);
 			break;
 		case 5://Rankine
-			switch(toTemp){
-			case 0://celsius
-				break;
-			case 1://fahrenheit
-				break;
-			case 2://kelvin
-				break;
-			case 3://newton
-				break;
-			case 4://delisle
-				break;
-			case 5://rankine
-				break;
-			case 6://reaumur
-				break;
-			case 7://romer
-				break;
-			default:
-				//send dialog error
-			}
+			resultValue = rankineToAll(toTemp, startValue);
 			break;
 		case 6://Reaumur
-			switch(toTemp){
-			case 0://celsius
-				break;
-			case 1://fahrenheit
-				break;
-			case 2://kelvin
-				break;
-			case 3://newton
-				break;
-			case 4://delisle
-				break;
-			case 5://rankine
-				break;
-			case 6://reaumur
-				break;
-			case 7://romer
-				break;
-			default:
-				//send dialog error
-			}
+			resultValue = reaumurToAll(toTemp, startValue);
 			break;
 		case 7://Romer
-			switch(toTemp){
-			case 0://celsius
-				break;
-			case 1://fahrenheit
-				break;
-			case 2://kelvin
-				break;
-			case 3://newton
-				break;
-			case 4://delisle
-				break;
-			case 5://rankine
-				break;
-			case 6://reaumur
-				break;
-			case 7://romer
-				break;
-			default:
-				//send dialog error
-			}
+			resultValue = romerToAll(toTemp, startValue);
 			break;
 		}
 		
 		//return result;
 		return resultValue;
 	}
-
+	
 /**
  * 
  * Sean Sep 29, 2011
  * start type specific functions
- * @param toTemp
+ * each function converts the named scale to the 7 others
+ * @param toTemp int value of result temp scale
  * @param startValue
  * @return converted temp
  */
@@ -198,6 +105,7 @@ public class TempConversion {
 
 	private double fahrenheitToAll(int toTemp, double startValue){
 		double resultValue = 0d;
+		
 		switch(toTemp){
 		case 0://celsius
 			resultValue = (startValue - 32) * 5/9;
@@ -232,7 +140,7 @@ public class TempConversion {
 		
 		switch(toTemp){
 		case 0://celsius
-			resultValue = (startValue - 273.15);
+			resultValue = (startValue - 273.15d);
 			break;
 		case 1://fahrenheit
 			resultValue = (startValue * 9/5 - 459.67);
@@ -256,6 +164,162 @@ public class TempConversion {
 			//TODO send dialog error
 		}
 		
+		return resultValue;
+	}
+	
+	//tested  several values against wiki, looks accurate
+	private double newtonToAll(int toTemp, double startValue) {
+		double resultValue = 0d;
+		
+		switch(toTemp){
+		case 0://celsius
+			resultValue = startValue * 100/33;
+			break;
+		case 1://fahrenheit
+			resultValue = startValue * 60/11 +32;
+			break;
+		case 2://kelvin
+			resultValue = startValue *100/33 +273.15;
+			break;
+		case 4://delisle
+			resultValue = (33 - startValue) * 50/11; 
+			break;
+		case 5://rankine
+			resultValue = startValue *60/11 + 491.67;
+			break;
+		case 6://reaumur
+			resultValue = startValue * 80/33;
+			break;
+		case 7://romer
+			resultValue = startValue * 35/22 + 7.5;
+			break;
+		default:
+			//TODO send dialog error
+		}
+			return resultValue;
+	}
+	
+	private double delisleToAll(int toTemp, double startValue) {
+		double resultValue = 0d;
+		
+		switch(toTemp){
+		case 0://celsius
+			resultValue = 100 - startValue * 2/3;
+			break;
+		case 1://fahrenheit
+			resultValue = 212 - startValue * 6/5;
+			break;
+		case 2://kelvin
+			resultValue = 373.15 - startValue * 2/3;
+			break;
+		case 3://newton
+			resultValue = 33 - startValue * 11/50;
+			break;
+		case 5://rankine
+			resultValue = 671.67 - startValue * 6/5;
+			break;
+		case 6://reaumur
+			resultValue = 80 - startValue * 8/15;
+			break;
+		case 7://romer
+			resultValue = 60 - startValue * 7/20;
+			break;
+		default:
+			//TODO send dialog error
+		}
+		return resultValue;
+	}
+	
+	private double rankineToAll(int toTemp, double startValue) {
+		double resultValue = 0d;
+		
+		switch(toTemp){
+		case 0://celsius
+			resultValue = (startValue - 491.67) * 5/9;
+			break;
+		case 1://fahrenheit
+			resultValue = startValue - 459.67;
+			break;
+		case 2://kelvin
+			resultValue = startValue * 5/9;
+			break;
+		case 3://newton
+			resultValue = (startValue - 491.67) * 11/60;
+			break;
+		case 4://delisle
+			resultValue = (671.67 - startValue) * 5/6;
+			break;
+		case 6://reaumur
+			resultValue = (startValue - 491.67) * 4/9;
+			break;
+		case 7://romer
+			resultValue = (startValue -491.67) * 7/24 + 7.5;
+			break;
+		default:
+			//TODO send dialog error
+		}
+		return resultValue;
+	}
+	
+	private double reaumurToAll(int toTemp, double startValue) {
+		double resultValue = 0d;
+		
+		switch(toTemp){
+		case 0://celsius
+			resultValue = startValue * 5/4;
+			break;
+		case 1://fahrenheit
+			resultValue = startValue * 9/4 +32;
+			break;
+		case 2://kelvin
+			resultValue = startValue * 5/4 + 273.15;
+			break;
+		case 3://newton
+			resultValue = startValue * 33/80;
+			break;
+		case 4://delisle
+			resultValue = (80 - startValue) * 15/8;
+			break;
+		case 5://rankine
+			resultValue = startValue * 9/4 + 491.67;
+			break;
+		case 7://romer
+			resultValue = startValue * 21/32 + 7.5;
+			break;
+		default:
+			//TODO send dialog error
+		}
+		return resultValue;
+	}
+	
+	private double romerToAll(int toTemp, double startValue) {
+		double resultValue = 0d;
+		
+		switch(toTemp){
+		case 0://celsius
+			resultValue = (startValue - 7.5) * 40/21;
+			break;
+		case 1://fahrenheit
+			resultValue = (startValue - 7.5) * 24/7 + 32;
+			break;
+		case 2://kelvin
+			resultValue = (startValue - 7.5) * 40/21 + 273.15;
+			break;
+		case 3://newton
+			resultValue = (startValue - 7.5) * 22/35;
+			break;
+		case 4://delisle
+			resultValue = (60 -startValue) * 20/7;
+			break;
+		case 5://rankine
+			resultValue = (startValue - 7.5) * 24/7 + 491.67;
+			break;
+		case 6://reaumur
+			resultValue = (startValue - 7.5) * 32/21;
+			break;
+		default:
+			//TODO send dialog error
+		}
 		return resultValue;
 	}
 }

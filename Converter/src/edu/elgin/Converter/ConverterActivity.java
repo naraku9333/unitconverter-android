@@ -1,6 +1,8 @@
 package edu.elgin.Converter;
 
 import java.math.BigInteger;
+import java.text.DecimalFormat;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -89,7 +91,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 	
 	
 	/**
-	 *  
+	 *  converter activity onClick
 	 */
 	@Override
 	public void onClick(View view) {
@@ -105,7 +107,11 @@ public class ConverterActivity extends Activity implements OnClickListener{
                 result = 0d;
 
 				result = ((TempConversion) b).tempConverter(intOldVal, intNewVal, start);
-				resultValue.setText(String.valueOf(result));
+				
+				//format the double to 2 decimals
+				DecimalFormat dec = new DecimalFormat("##.00");
+				
+				resultValue.setText(String.valueOf(Double.valueOf(dec.format(result))));
 			}
 		}
 	}
@@ -156,7 +162,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 	}
 	
 	/**
-	 * 
+	 * calls correct BaseConversion func
 	 * Sean Sep 22, 2011
 	 */
 	private void baseConvert() {
