@@ -45,5 +45,6 @@ public final class R {
         public static final int hello=0x7f050000;
         public static final int spn_from_title=0x7f050002;
         public static final int spn_to_title=0x7f050003;
+        public static final int temp_title=0x7f050005;
     }
 }

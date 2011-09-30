@@ -60,7 +60,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		 case 0:
 			 setTitle("Base Converter");
 			  adapter = ArrayAdapter.createFromResource(this, 
-					 R.array.base_array, android.R.layout.simple_spinner_item);
+					 R.array.base_array,android.R.layout.simple_spinner_item);
 			 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			 b = new BaseConversion();
 			 break;
@@ -135,10 +135,10 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			case 0://Base Converter
 				
 				if(parent.getId() == R.id.spnFrom)
-					intOldVal = Integer.parseInt(parent.getItemAtPosition(pos).toString());
+					intOldVal = pos + 2;//Integer.parseInt(parent.getItemAtPosition(pos).toString());
 			
 				else if(parent.getId() == R.id.spnTo)
-					intNewVal = Integer.parseInt(parent.getItemAtPosition(pos).toString());
+					intNewVal = pos + 2;//Integer.parseInt(parent.getItemAtPosition(pos).toString());
 				
 				break;
 			case 1://Temperature Converter
