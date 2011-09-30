@@ -13,14 +13,14 @@
     </string-array>
     
     <string-array name="temp_array">
-    	<item>Celsius</item>
-    	<item>Fahreneit</item>
-    	<item>Kelvin</item>
-    	<item>Newton</item>
-    	<item>Delisle</item>
-    	<item>Rankine</item>
-    	<item>Reaumur</item>
-    	<item>Romer</item>
+    	<item>\t\tCelsius</item>
+    	<item>\t\tFahreneit</item>
+    	<item>\t\tKelvin</item>
+    	<item>\t\tNewton</item>
+    	<item>\t\tDelisle</item>
+    	<item>\t\tRankine</item>
+    	<item>\t\tReaumur</item>
+    	<item>\t\tRomer</item>
     </string-array>
     
     <string-array name="empty_array">

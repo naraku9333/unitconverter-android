@@ -1,8 +1,6 @@
 package edu.elgin.Converter;
 
-import java.math.BigInteger;
 import java.text.DecimalFormat;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +20,8 @@ import edu.elgin.Converter.TempConversion;
  * Sep 19, 2011
  * 
  * Conversion screen activity
+ * 
+ * Sets UI and data for converter screen
  */
 public class ConverterActivity extends Activity implements OnClickListener{
 	
@@ -30,8 +30,12 @@ public class ConverterActivity extends Activity implements OnClickListener{
 	private EditText startValue, resultValue;
 	private Button convertButton;
 	private Spinner oldVal, newVal;
-	private int intOldVal, intNewVal;
+	private int intOldSpnVal, intNewSpnVal;
+	
+	//instead of a seperate object per class
+	//i'll this as all classes inherit Object AKAIK
 	private Object b;
+	
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
@@ -56,6 +60,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		 ArrayAdapter<CharSequence> adapter;
 		 
 		 //fill ArrayAdapter with data from correct array
+		 //and instantiate object
 		 switch(UnitList.unit){
 		 case 0:
 			 setTitle("Base Converter");
@@ -91,27 +96,32 @@ public class ConverterActivity extends Activity implements OnClickListener{
 	
 	
 	/**
-	 *  converter activity onClick
+	 *  ConverterActivity onClick
 	 */
 	@Override
 	public void onClick(View view) {
 		
 		if(view.getId() == R.id.btnConvert){
 			switch(UnitList.unit){
-			case 0:
-				baseConvert();
+			case 0://base
+				resultValue.setText(((BaseConversion) b)
+						.convert(intOldSpnVal, intNewSpnVal, startValue.getText().toString()));
 				break;
-			case 1:
+			case 1://temp
 				//get value from editbox
 				double start = Float.valueOf(startValue.getText().toString()), 
                 result = 0d;
 
-				result = ((TempConversion) b).tempConverter(intOldVal, intNewVal, start);
+				result = ((TempConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
 				
 				//format the double to 2 decimals
 				DecimalFormat dec = new DecimalFormat("##.00");
 				
 				resultValue.setText(String.valueOf(Double.valueOf(dec.format(result))));
+				break;
+			default:
+				//TODO send error
+				break;
 			}
 		}
 	}
@@ -135,20 +145,21 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			case 0://Base Converter
 				
 				if(parent.getId() == R.id.spnFrom)
-					intOldVal = pos + 2;//Integer.parseInt(parent.getItemAtPosition(pos).toString());
+					intOldSpnVal = pos + 2;
 			
 				else if(parent.getId() == R.id.spnTo)
-					intNewVal = pos + 2;//Integer.parseInt(parent.getItemAtPosition(pos).toString());
+					intNewSpnVal = pos + 2;
 				
 				break;
 			case 1://Temperature Converter
 				if(parent.getId() == R.id.spnFrom)
-					intOldVal = pos;//Integer.parseInt(parent.getItemAtPosition(pos).toString());
+					intOldSpnVal = pos;
 			
 				else if(parent.getId() == R.id.spnTo)
-					intNewVal = pos;//Integer.parseInt(parent.getItemAtPosition(pos).toString());
+					intNewSpnVal = pos;
 				break;
 			default:
+				//TODO send error
 				break;
 			}
 		}
@@ -156,34 +167,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 
 		@Override
 		public void onNothingSelected(AdapterView<?> arg0) {
-			// TODO Auto-generated method stub
-			
+			// TODO Auto-generated method stub	
 		}
 	}
-	
-	/**
-	 * calls correct BaseConversion func
-	 * Sean Sep 22, 2011
-	 */
-	private void baseConvert() {
-		Log.d(TAG,"ConverterActivity: baseConvert(), oldbase= "
-				+ intOldVal + ", newbase= " + intNewVal);//DBG
-		
-		/*BaseConversion b = new BaseConversion();*/
-		
-		if(intOldVal == 10){
-			String s = ((BaseConversion) b).fromBaseTen(startValue.getText().toString(), intNewVal);
-			resultValue.setText(s);
-		}
-		else if(intNewVal == 10){
-			BigInteger res = ((BaseConversion) b).toBaseTen(startValue.getText().toString(), intOldVal);
-			resultValue.setText(res.toString());
-		}
-		else{
-			resultValue.setText(((BaseConversion) b).fromBaseTen(((BaseConversion) b).toBaseTen(startValue.getText()
-					.toString(),intOldVal).toString(), intNewVal));
-		}
-	}
-	
-	
 }

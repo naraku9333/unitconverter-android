@@ -11,11 +11,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 /**
- * UnitList.java
- * 
+ *  
  * CIS-262 - Applied Programming
  * @author Sean Vogel svogel7577@student.elgin.edu
  * @author Rob Kahren II rkahren2@gmail.com
+ * 
+ * UnitList
+ * Unit list choice screen
+ * first screen shown to user
  */
 public class UnitList extends ListActivity {
 	

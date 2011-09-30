@@ -6,10 +6,36 @@ import android.util.Log;
 /**
  * @author Sean Vogel 
  * Sep 28, 2011
+ * 
+ * Base Conversion class
+ * modified from CIS-127 assignment
  */
 public class BaseConversion {
 	
 	private static final String TAG = "Sudoku";
+	
+	/**
+	 * calls correct BaseConversion func
+	 * Sean Sep 22, 2011
+	 */
+	public String convert(int intOldSpnVal, int intNewSpnVal,String startValue ) {
+		Log.d(TAG,"BaseConversion: convert(), oldbase= "
+				+ intOldSpnVal + ", newbase= " + intNewSpnVal);//DBG
+		
+		String resultValue;
+		if(intOldSpnVal == 10){
+			String s = fromBaseTen(startValue, intNewSpnVal);
+			resultValue = s;
+		}
+		else if(intNewSpnVal == 10){
+			BigInteger res = toBaseTen(startValue, intOldSpnVal);
+			resultValue = res.toString();
+		}
+		else{
+			resultValue = fromBaseTen(toBaseTen(startValue,intOldSpnVal).toString(), intNewSpnVal);
+		}
+		return resultValue;
+	}
 
 	/**
 	 * 
@@ -20,7 +46,7 @@ public class BaseConversion {
 	 * 
 	 * converts from any base(2 - 36) to base 10
 	 */
-	public BigInteger toBaseTen(String num, int oldBase){
+	private BigInteger toBaseTen(String num, int oldBase){
 		Log.d(TAG,"ConverterActivity: toBaseTen(), num= " + num + ", oldbase=" + oldBase);//DBG
 		
 		BigInteger result = BigInteger.ZERO;
@@ -53,7 +79,7 @@ public class BaseConversion {
 	 * 
 	 * converts to any base(2 - 36) from base 10 
 	 */
-	public String fromBaseTen(String orig, int newBase){
+	private String fromBaseTen(String orig, int newBase){
 		Log.d(TAG,"ConverterActivity: fromBaseTen(), orig= " + orig + ", newBase= "+newBase);//DBG
 		
 		BigInteger num = new BigInteger(orig);
