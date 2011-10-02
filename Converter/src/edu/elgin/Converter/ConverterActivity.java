@@ -78,6 +78,22 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			 b = new TempConversion();
 			 break;
 			 
+		 case 2:
+			 setTitle("Kitchen Volume Converter");
+			 adapter = ArrayAdapter.createFromResource(this, 
+					 R.array.kvol_array, android.R.layout.simple_spinner_item);
+			 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			 b = new KitchenConversion();
+			 break;
+			
+		 case 3:
+			 setTitle("distance Converter");
+			 adapter = ArrayAdapter.createFromResource(this, 
+					 R.array.distance_array, android.R.layout.simple_spinner_item);
+			 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			 b = new DistanceConversion();
+			 break;
+			 
 		 default:
 			 setTitle("Converter");
 			  adapter = ArrayAdapter.createFromResource(this, 
@@ -102,6 +118,8 @@ public class ConverterActivity extends Activity implements OnClickListener{
 	public void onClick(View view) {
 		
 		if(view.getId() == R.id.btnConvert){
+			double start = Float.valueOf(startValue.getText().toString()), 
+	                result = 0d;
 			switch(UnitList.unit){
 			case 0://base
 				resultValue.setText(((BaseConversion) b)
@@ -109,8 +127,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				break;
 			case 1://temp
 				//get value from editbox
-				double start = Float.valueOf(startValue.getText().toString()), 
-                result = 0d;
+				
 
 				result = ((TempConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
 				
@@ -119,9 +136,21 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				
 				resultValue.setText(String.valueOf(Double.valueOf(dec.format(result))));
 				break;
+			
+			case 2:
+				result = ((KitchenConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
+				result = Math.round(result *100.0)/100.0;
+				resultValue.setText(String.valueOf(result));
+				break;
+			case 3:
+				result = ((DistanceConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
+				result = Math.round(result *100.0)/100.0;
+				resultValue.setText(String.valueOf(result));
+				break;
 			default:
 				//TODO send error
 				break;
+			
 			}
 		}
 	}
@@ -152,6 +181,8 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				
 				break;
 			case 1://Temperature Converter
+			case 2://Kitchen Volume Converter
+			case 3://Distance Converter
 				if(parent.getId() == R.id.spnFrom)
 					intOldSpnVal = pos;
 			
@@ -170,4 +201,8 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			// TODO Auto-generated method stub	
 		}
 	}
+	
+	
+	
 }
+

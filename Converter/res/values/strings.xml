@@ -10,6 +10,8 @@
     <string-array name="list_item_array">
     	<item>Numeric Base</item>
     	<item>Temperature</item>
+    	<item>Kitchen Volume</item>
+    	<item>Distance</item>
     </string-array>
     
     <string-array name="temp_array">
@@ -23,6 +25,31 @@
     	<item>\t\tRomer</item>
     </string-array>
     
+     <string-array name="kvol_array">
+    	<item>Teaspoons</item>
+    	<item>Tablespoons</item>
+    	<item>Fluid Ounces</item>
+    	<item>Cups</item>
+    	<item>Pints</item>
+    	<item>Quarts</item>
+    	<item>Gallons</item>
+    </string-array>
+    <string-array name="distance_array">
+    	<item>Angstrom</item>
+    	<item>Nanometer(nm)</item>
+    	<item>Microinch</item>
+    	<item>Micrometre(micron)</item>
+    	<item>Mil</item>
+    	<item>Millimeter(mm)</item>
+    	<item>Inch(in)</item>
+    	<item>Centimeter(cm)</item>
+    	<item>Decimeter(dm)</item>
+    	<item>Foot(ft)</item>
+    	<item>Meter(m)</item>
+    	<item>yard(yd)</item>
+    	<item>Kilometer(km)</item>
+    	<item>Mile</item>
+    </string-array>
     <string-array name="empty_array">
     	<item> </item>
     	<item> </item>
