@@ -1,6 +1,7 @@
 package edu.elgin.Converter;
 
 import java.text.DecimalFormat;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,8 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import edu.elgin.Converter.BaseConversion;
-import edu.elgin.Converter.TempConversion;
+import android.content.res.*;
 
 /**
  * @author Sean Vogel 
@@ -120,6 +120,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		if(view.getId() == R.id.btnConvert){
 			double start = Float.valueOf(startValue.getText().toString()), 
 	                result = 0d;
+			Resources res = getResources();
 			switch(UnitList.unit){
 			case 0://base
 				resultValue.setText(((BaseConversion) b)
@@ -138,14 +139,16 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				break;
 			
 			case 2:
+				String[] kitchenArray= res.getStringArray(R.array.kvol_array);
 				result = ((KitchenConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
 				result = Math.round(result *100.0)/100.0;
-				resultValue.setText(String.valueOf(result));
+				resultValue.setText(String.valueOf(result) + " " + kitchenArray[intNewSpnVal]);
 				break;
 			case 3:
+				String[] distanceArray = res.getStringArray(R.array.distance_array);
 				result = ((DistanceConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
 				result = Math.round(result *100.0)/100.0;
-				resultValue.setText(String.valueOf(result));
+				resultValue.setText(String.valueOf(result)+ " " + distanceArray[intNewSpnVal]);
 				break;
 			default:
 				//TODO send error

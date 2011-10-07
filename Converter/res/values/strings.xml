@@ -35,20 +35,20 @@
     	<item>Gallons</item>
     </string-array>
     <string-array name="distance_array">
-    	<item>Angstrom</item>
-    	<item>Nanometer(nm)</item>
-    	<item>Microinch</item>
-    	<item>Micrometre(micron)</item>
-    	<item>Mil</item>
-    	<item>Millimeter(mm)</item>
-    	<item>Inch(in)</item>
-    	<item>Centimeter(cm)</item>
-    	<item>Decimeter(dm)</item>
-    	<item>Foot(ft)</item>
-    	<item>Meter(m)</item>
-    	<item>yard(yd)</item>
-    	<item>Kilometer(km)</item>
-    	<item>Mile</item>
+    	<item>Angstroms</item>
+    	<item>Nanometers (nm)</item>
+    	<item>Microinches</item>
+    	<item>Micrometres (micron)</item>
+    	<item>Mils</item>
+    	<item>Millimeters (mm)</item>
+    	<item>Inches (in)</item>
+    	<item>Centimeters (cm)</item>
+    	<item>Decimeters (dm)</item>
+    	<item>Feet (ft)</item>
+    	<item>Meters (m)</item>
+    	<item>yards (yd)</item>
+    	<item>Kilometers (km)</item>
+    	<item>Miles</item>
     </string-array>
     <string-array name="empty_array">
     	<item> </item>

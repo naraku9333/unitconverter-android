@@ -55,7 +55,7 @@ public class DistanceConversion {
 				result = start / .01093613;
 				break;
 			case 12:
-				result = start / .0001;
+				result = start / .00001;
 				break;
 			case 13:
 				result = start / .000006213712;
@@ -117,7 +117,7 @@ public class DistanceConversion {
 				
 				break;
 			case 12:
-				result = result * .0001;
+				result = result * .00001;
 				
 				
 				break;
