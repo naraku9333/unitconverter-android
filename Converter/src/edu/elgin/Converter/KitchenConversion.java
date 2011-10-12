@@ -11,7 +11,7 @@ import android.util.Log;
  */
 public class KitchenConversion {
 
-	private final String TAG = "conversion";
+	private final String TAG = "Converter";
 	
 	
 	public  double convert(int from, int to, double start){

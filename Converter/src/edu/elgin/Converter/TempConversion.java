@@ -16,7 +16,7 @@ import android.util.Log;
  */
 public class TempConversion {
 
-	private final String TAG = "Sudoku";
+	private final String TAG = "Converter";
 	
 	/**
 	 * 
@@ -112,6 +112,7 @@ public class TempConversion {
 			resultValue = startValue * 21/40 + 7.5f;
 		default:
 			//TODO send error
+			resultValue = startValue;
 			break;
 		}
 		

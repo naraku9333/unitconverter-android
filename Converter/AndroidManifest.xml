@@ -15,5 +15,12 @@
         </activity>
 		<activity android:name=".ConverterActivity">
 		</activity>
-    </application>
+		<activity android:name=".About"
+			android:label="@string/about_title"
+			android:theme="@android:style/Theme.Dialog">
+		</activity>
+		<activity android:name=".Settings"
+			android:label="settings_label">
+		</activity>  
+	</application>
 </manifest>

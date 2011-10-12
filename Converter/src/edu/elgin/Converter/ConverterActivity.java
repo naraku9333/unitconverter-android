@@ -1,10 +1,17 @@
 package edu.elgin.Converter;
 
-import java.text.DecimalFormat;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -13,7 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.content.res.*;
+import android.widget.Toast;
 
 /**
  * @author Sean Vogel 
@@ -22,6 +29,11 @@ import android.content.res.*;
  * Conversion screen activity
  * 
  * Sets UI and data for converter screen
+ * 
+ * References:
+ * 1: http://coderzheaven.com/2011/07/regex-validation-for-only-removing-invalid-characters-in-android/
+ * 2: http://stackoverflow.com/questions/2586301/set-inputtype-for-an-edittext
+ * 
  */
 public class ConverterActivity extends Activity implements OnClickListener{
 	
@@ -31,9 +43,10 @@ public class ConverterActivity extends Activity implements OnClickListener{
 	private Button convertButton;
 	private Spinner oldVal, newVal;
 	private int intOldSpnVal, intNewSpnVal;
+	private int unit = 0;
 	
 	//instead of a seperate object per class
-	//i'll this as all classes inherit Object AKAIK
+	//i'll use this since all classes inherit Object AKAIK
 	private Object b;
 	
 	/* (non-Javadoc)
@@ -47,7 +60,12 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		 
 		 setContentView(R.layout.converter);
 		 
-		 //get views
+		 //get listview item index from intent
+		 Bundle extras = getIntent().getExtras();
+		 if(extras != null)
+			 unit = extras.getInt("unit");
+		 
+		 //get views by there id's
 		 startValue = (EditText)findViewById(R.id.edtStartValue);
 		 resultValue = (EditText)findViewById(R.id.edtResult);
 		 
@@ -57,16 +75,21 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		 newVal = (Spinner) findViewById(R.id.spnTo);
 		 oldVal = (Spinner) findViewById(R.id.spnFrom);
 		 
+		 //fill ArrayAdapter with data from correct array
 		 ArrayAdapter<CharSequence> adapter;
 		 
-		 //fill ArrayAdapter with data from correct array
-		 //and instantiate object
-		 switch(UnitList.unit){
+		 /**
+		  * For each case, set window title, add array data to spinner,
+		  * set input type (restrict to numbers for all but base)
+		  * and instantiate object to specific conversion class
+		  */
+		 switch(unit){
 		 case 0:
 			 setTitle("Base Converter");
 			  adapter = ArrayAdapter.createFromResource(this, 
 					 R.array.base_array,android.R.layout.simple_spinner_item);
 			 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			 startValue.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
 			 b = new BaseConversion();
 			 break;
 			 
@@ -75,6 +98,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			  adapter = ArrayAdapter.createFromResource(this, 
 					 R.array.temp_array, android.R.layout.simple_spinner_item);
 			 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			 startValue.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 			 b = new TempConversion();
 			 break;
 			 
@@ -83,6 +107,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			 adapter = ArrayAdapter.createFromResource(this, 
 					 R.array.kvol_array, android.R.layout.simple_spinner_item);
 			 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			 startValue.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 			 b = new KitchenConversion();
 			 break;
 			
@@ -91,6 +116,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			 adapter = ArrayAdapter.createFromResource(this, 
 					 R.array.distance_array, android.R.layout.simple_spinner_item);
 			 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			 startValue.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 			 b = new DistanceConversion();
 			 break;
 			 
@@ -110,42 +136,79 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		 newVal.setOnItemSelectedListener(new MyItemSelectedListener());
 	}
 	
+	/**
+	 * Create menu
+	 */
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu){
+		super.onCreateOptionsMenu(menu);
+		MenuInflater mInflater = getMenuInflater();
+		mInflater.inflate(R.menu.menu, menu);
+		return true;
+	}
+	
+	/**
+	 * menu item selected
+	 */
+	public boolean onOptionsItemSelected(MenuItem item){
+		switch(item.getItemId()){
+		
+		case R.id.settings:
+			startActivity(new Intent(this, Settings.class));
+			return true;
+			
+		case R.id.about_box:
+			startActivity(new Intent(this, About.class));
+			return true;
+		}
+		return false;
+	}
 	
 	/**
 	 *  ConverterActivity onClick
+	 *  
+	 *  input is validated by only allowing numerals for all conversions
+	 *  except base, where validation is done with a regular expression check
 	 */
 	@Override
 	public void onClick(View view) {
 		
 		if(view.getId() == R.id.btnConvert){
-			double start = Float.valueOf(startValue.getText().toString()), 
+			double start = 0d, 
 	                result = 0d;
 			Resources res = getResources();
-			switch(UnitList.unit){
+			
+			switch(unit){
 			case 0://base
-				String[] baseArray= res.getStringArray(R.array.base_array);
-				resultValue.setText(((BaseConversion) b)
-						.convert(intOldSpnVal, intNewSpnVal, startValue.getText().toString()) + baseArray[intNewSpnVal-2]);
+				if(validate(startValue.getText().toString()) == true){
+
+					String[] baseArray= res.getStringArray(R.array.base_array);
+					resultValue.setText(((BaseConversion) b)
+							.convert(intOldSpnVal, intNewSpnVal, startValue.getText().toString()) + baseArray[intNewSpnVal-2]);
+				}
+				else{
+					Toast.makeText(getApplicationContext(),
+							"Enter only numbers 0 - 9,\n and/or letters A -F", Toast.LENGTH_SHORT).show();
+				}
 				break;
 			case 1://temp
 				//get value from editbox
-				
+				start = Double.valueOf(startValue.getText().toString());
 				String[] tempArray= res.getStringArray(R.array.temp_array);
 				result = ((TempConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
-				
-				//format the double to 2 decimals
-				DecimalFormat dec = new DecimalFormat("##.00");
-				
-				resultValue.setText(String.valueOf(Double.valueOf(dec.format(result))) + tempArray[intNewSpnVal]);
+				resultValue.setText(String.valueOf(Math.round(result * 100.00)/100.00) + tempArray[intNewSpnVal]);
+
 				break;
 			
-			case 2:
+			case 2://kitchen
+				start = Double.valueOf(startValue.getText().toString());
 				String[] kitchenArray= res.getStringArray(R.array.kvol_array);
 				result = ((KitchenConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
 				result = Math.round(result *100.0)/100.0;
 				resultValue.setText(String.valueOf(result) + kitchenArray[intNewSpnVal]);
 				break;
-			case 3:
+			case 3://distance
+				start = Double.valueOf(startValue.getText().toString());
 				String[] distanceArray = res.getStringArray(R.array.distance_array);
 				result = ((DistanceConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
 				result = Math.round(result *100.0)/100.0;
@@ -174,9 +237,9 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			Log.d(TAG,"ConverterActivity: onItemSelected()");//DBG
 			
 			//set the correct variable depending on which ListItem clicked
-			switch(UnitList.unit){
+			switch(unit){
 			case 0://Base Converter
-				
+				//add 2 to pos so spinner val is base
 				if(parent.getId() == R.id.spnFrom)
 					intOldSpnVal = pos + 2;
 			
@@ -206,7 +269,19 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		}
 	}
 	
-	
-	
+	//validate input for base conversion
+	//allow only numerals and chars a - f
+	//see reference 1
+	private boolean validate(String str)
+    {
+        String regex = "^[a-f_A-F0-9]*$";
+       
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(str);
+        if(matcher.matches())
+        	return true;
+        else
+        	return false;
+     }
 }
 

@@ -24,8 +24,6 @@ import android.widget.ListView;
 public class UnitList extends ListActivity {
 	
 	private static final String TAG = "Converter";//DBG
-	public static int unit = 0;
-	//public static int unit;
 	
     /** Called when the activity is first created. */
     @Override
@@ -60,8 +58,8 @@ public class UnitList extends ListActivity {
         		case 0:
         		default:
         			Intent i = new Intent(UnitList.this, ConverterActivity.class);
-        			unit = pos;
-        			/*UnitList.this.*/startActivity(i);
+        			i.putExtra("unit", pos);
+        			startActivity(i);
         			break;
         		}
         	}
