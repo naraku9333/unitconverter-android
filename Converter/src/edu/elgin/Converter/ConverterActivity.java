@@ -123,32 +123,33 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			Resources res = getResources();
 			switch(UnitList.unit){
 			case 0://base
+				String[] baseArray= res.getStringArray(R.array.base_array);
 				resultValue.setText(((BaseConversion) b)
-						.convert(intOldSpnVal, intNewSpnVal, startValue.getText().toString()));
+						.convert(intOldSpnVal, intNewSpnVal, startValue.getText().toString()) + baseArray[intNewSpnVal-2]);
 				break;
 			case 1://temp
 				//get value from editbox
 				
-
+				String[] tempArray= res.getStringArray(R.array.temp_array);
 				result = ((TempConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
 				
 				//format the double to 2 decimals
 				DecimalFormat dec = new DecimalFormat("##.00");
 				
-				resultValue.setText(String.valueOf(Double.valueOf(dec.format(result))));
+				resultValue.setText(String.valueOf(Double.valueOf(dec.format(result))) + tempArray[intNewSpnVal]);
 				break;
 			
 			case 2:
 				String[] kitchenArray= res.getStringArray(R.array.kvol_array);
 				result = ((KitchenConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
 				result = Math.round(result *100.0)/100.0;
-				resultValue.setText(String.valueOf(result) + " " + kitchenArray[intNewSpnVal]);
+				resultValue.setText(String.valueOf(result) + kitchenArray[intNewSpnVal]);
 				break;
 			case 3:
 				String[] distanceArray = res.getStringArray(R.array.distance_array);
 				result = ((DistanceConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
 				result = Math.round(result *100.0)/100.0;
-				resultValue.setText(String.valueOf(result)+ " " + distanceArray[intNewSpnVal]);
+				resultValue.setText(String.valueOf(result) + distanceArray[intNewSpnVal]);
 				break;
 			default:
 				//TODO send error

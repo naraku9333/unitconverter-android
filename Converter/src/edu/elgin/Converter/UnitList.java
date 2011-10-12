@@ -2,6 +2,7 @@ package edu.elgin.Converter;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,8 +39,15 @@ public class UnitList extends ListActivity {
         String[] items = getResources().getStringArray(R.array.list_item_array);
         setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, items));
         
+       
         ListView list = getListView();
+        ColorDrawable draw = new ColorDrawable(this.getResources().getColor(R.color.converter_background));
+        list.setBackgroundDrawable(draw);
+
         list.setTextFilterEnabled(true);
+        
+       
+        
         
         //create click listener for array items
         list.setOnItemClickListener(new OnItemClickListener(){

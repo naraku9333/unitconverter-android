@@ -4,6 +4,8 @@
 	android:layout_height="wrap_content"
 	android:gravity="center"
 	android:padding="10dp"
-	android:textSize="22sp">
+	android:textSize="22sp"
+	android:background="@color/converter_background"
+	android:textColor="@color/converter_text">
 </TextView>
 
