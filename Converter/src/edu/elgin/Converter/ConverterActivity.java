@@ -4,9 +4,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
@@ -38,6 +40,7 @@ import android.widget.Toast;
 public class ConverterActivity extends Activity implements OnClickListener{
 	
 	private static final String TAG = "Converter";//DBG
+	public int vibrate_time = 1000;
 	
 	private EditText startValue, resultValue;
 	private Button convertButton;
@@ -177,9 +180,12 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			double start = 0d, 
 	                result = 0d;
 			Resources res = getResources();
+			// Get instance of Vibrator from current Context
+			Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+			
 			
 			switch(unit){
-			case 0://base
+			case 0://Base
 				if(validate(startValue.getText().toString()) == true){
 
 					String[] baseArray= res.getStringArray(R.array.base_array);
@@ -190,29 +196,40 @@ public class ConverterActivity extends Activity implements OnClickListener{
 					Toast.makeText(getApplicationContext(),
 							"Enter only numbers 0 - 9,\n and/or letters A -F", Toast.LENGTH_SHORT).show();
 				}
+				if(Settings.getVibrate(getBaseContext())){
+					v.vibrate(vibrate_time);
+				}
 				break;
-			case 1://temp
-				//get value from editbox
+			case 1://Temp
+				//Get value from editbox
 				start = Double.valueOf(startValue.getText().toString());
 				String[] tempArray= res.getStringArray(R.array.temp_array);
 				result = ((TempConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
 				resultValue.setText(String.valueOf(Math.round(result * 100.00)/100.00) + tempArray[intNewSpnVal]);
-
+				if(Settings.getVibrate(getBaseContext())){
+					v.vibrate(vibrate_time);
+				}
 				break;
 			
-			case 2://kitchen
+			case 2://Kitchen
 				start = Double.valueOf(startValue.getText().toString());
 				String[] kitchenArray= res.getStringArray(R.array.kvol_array);
 				result = ((KitchenConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
 				result = Math.round(result *100.0)/100.0;
 				resultValue.setText(String.valueOf(result) + kitchenArray[intNewSpnVal]);
+				if(Settings.getVibrate(getBaseContext())){
+					v.vibrate(vibrate_time);
+				}
 				break;
-			case 3://distance
+			case 3://Distance
 				start = Double.valueOf(startValue.getText().toString());
 				String[] distanceArray = res.getStringArray(R.array.distance_array);
 				result = ((DistanceConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
 				result = Math.round(result *100.0)/100.0;
 				resultValue.setText(String.valueOf(result) + distanceArray[intNewSpnVal]);
+				if(Settings.getVibrate(getBaseContext())){
+					v.vibrate(vibrate_time);
+				}
 				break;
 			default:
 				//TODO send error

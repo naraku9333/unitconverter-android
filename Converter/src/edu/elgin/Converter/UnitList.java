@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -65,4 +68,31 @@ public class UnitList extends ListActivity {
         	}
         });
     }
+    /**
+	 * Create menu
+	 */
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu){
+		super.onCreateOptionsMenu(menu);
+		MenuInflater mInflater = getMenuInflater();
+		mInflater.inflate(R.menu.menu, menu);
+		return true;
+	}
+	
+	/**
+	 * menu item selected
+	 */
+	public boolean onOptionsItemSelected(MenuItem item){
+		switch(item.getItemId()){
+		
+		case R.id.settings:
+			startActivity(new Intent(this, Settings.class));
+			return true;
+			
+		case R.id.about_box:
+			startActivity(new Intent(this, About.class));
+			return true;
+		}
+		return false;
+	}
 }

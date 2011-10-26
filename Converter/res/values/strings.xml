@@ -13,7 +13,8 @@
     <string name="about_text">A basic unit conversion utility developed\nas a semester project
     	\nfor CIS-262 at Elgin Community College.\n\n@Authors:\nSean Vogel svogel7577@student.elgin.edu
     	\nRob Kahren II\trkahren2@gmail.com</string>
-    <string name="no_settings">Not yet implemented</string>
+    <string name="vibrate">Vibrates when answer is returned</string>
+    <string name="vibrate_title">Vibrate</string>
     
     <string-array name="list_item_array">
     	<item>Numeric Base</item>
