@@ -15,6 +15,9 @@
     	\nRob Kahren II\trkahren2@gmail.com</string>
     <string name="vibrate">Vibrates when answer is returned</string>
     <string name="vibrate_title">Vibrate</string>
+    <string name="vibrate_length">Select how long you wish to vibrate on the returning an answer</string>
+    <string name="sound_title">Sound</string>
+     <string name="sound">Plays a sound when answer is returned</string>
     
     <string-array name="list_item_array">
     	<item>Numeric Base</item>

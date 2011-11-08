@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="vibrate_interval">
+        <item name="1000">For 1 second</item>
+        <item name="2000">For 2 seconds</item>
+        <item name="3000">For 3 seconds</item>
+        <item name="4000">For 4 seconds</item>
+        <item name="5000">For 5 seconds</item>
+    </string-array>
+    <string-array name="vibrate_interval_values">
+         <item name="1000">1000</item>
+	     <item name="2000">2000</item>
+	     <item name="3000">3000</item>
+	     <item name="4000">4000</item>
+         <item name="5000">5000</item>
+    </string-array>
+
+    
+</resources>

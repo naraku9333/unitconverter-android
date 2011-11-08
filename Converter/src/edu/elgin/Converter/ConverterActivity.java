@@ -6,9 +6,11 @@ import java.util.regex.Pattern;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
@@ -40,13 +42,15 @@ import android.widget.Toast;
 public class ConverterActivity extends Activity implements OnClickListener{
 	
 	private static final String TAG = "Converter";//DBG
-	public int vibrate_time = 1000;
+	
 	
 	private EditText startValue, resultValue;
 	private Button convertButton;
 	private Spinner oldVal, newVal;
 	private int intOldSpnVal, intNewSpnVal;
 	private int unit = 0;
+	
+	
 	
 	//instead of a seperate object per class
 	//i'll use this since all classes inherit Object AKAIK
@@ -60,6 +64,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		
 		 Log.d(TAG,"ConverterActivity: onCreate()");//DBG
+		 
 		 
 		 setContentView(R.layout.converter);
 		 
@@ -175,6 +180,8 @@ public class ConverterActivity extends Activity implements OnClickListener{
 	 */
 	@Override
 	public void onClick(View view) {
+		//Retire shared preferences and set time for vibrate
+		int vibrate_time = 1000;
 		
 		if(view.getId() == R.id.btnConvert){
 			double start = 0d, 
@@ -197,7 +204,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 							"Enter only numbers 0 - 9,\n and/or letters A -F", Toast.LENGTH_SHORT).show();
 				}
 				if(Settings.getVibrate(getBaseContext())){
-					v.vibrate(vibrate_time);
+					v.vibrate(Settings.getVibrateInterval(getBaseContext()));
 				}
 				break;
 			case 1://Temp
@@ -207,7 +214,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				result = ((TempConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
 				resultValue.setText(String.valueOf(Math.round(result * 100.00)/100.00) + tempArray[intNewSpnVal]);
 				if(Settings.getVibrate(getBaseContext())){
-					v.vibrate(vibrate_time);
+					v.vibrate(Settings.getVibrateInterval(getBaseContext()));
 				}
 				break;
 			
@@ -218,7 +225,10 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				result = Math.round(result *100.0)/100.0;
 				resultValue.setText(String.valueOf(result) + kitchenArray[intNewSpnVal]);
 				if(Settings.getVibrate(getBaseContext())){
-					v.vibrate(vibrate_time);
+					v.vibrate(Settings.getVibrateInterval(getBaseContext()));
+				if(Settings.getSound(getBaseContext())){
+					SoundPlayer.play(this, R.raw.answer);
+				}
 				}
 				break;
 			case 3://Distance
@@ -228,7 +238,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				result = Math.round(result *100.0)/100.0;
 				resultValue.setText(String.valueOf(result) + distanceArray[intNewSpnVal]);
 				if(Settings.getVibrate(getBaseContext())){
-					v.vibrate(vibrate_time);
+					v.vibrate(Settings.getVibrateInterval(getBaseContext()));
 				}
 				break;
 			default:

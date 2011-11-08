@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
-  xmlns:android="http://schemas.android.com/apk/res/android">
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:title="@string/settings_title">  
+  	<CheckBoxPreference 
+  		android:name="@+id/settings"
+  		android:key="sound"
+  		android:title="@string/sound_title"
+  		android:summary="@string/sound"
+  		android:defaultValue="true" />
   	<CheckBoxPreference 
   		android:name="@+id/settings"
   		android:key="vibrate"
   		android:title="@string/vibrate_title"
   		android:summary="@string/vibrate"
   		android:defaultValue="true" />
+  	<ListPreference
+  		android:name="@+id/settings"
+  		android:key="vibrate_length"
+  		android:summary="@string/vibrate_length"
+  		android:defaultValue="3000"
+  		android:entries="@array/vibrate_interval"
+  		android:entryValues="@array/vibrate_interval_values"
+  		android:dependency="vibrate" />
+  		
+  		
+  		
+  		
 </PreferenceScreen>
