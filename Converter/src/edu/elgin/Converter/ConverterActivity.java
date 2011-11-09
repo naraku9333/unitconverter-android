@@ -206,6 +206,9 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				if(Settings.getVibrate(getBaseContext())){
 					v.vibrate(Settings.getVibrateInterval(getBaseContext()));
 				}
+				if(Settings.getSound(getBaseContext())){
+					SoundPlayer.play(this, R.raw.answer);
+				}
 				break;
 			case 1://Temp
 				//Get value from editbox
@@ -215,6 +218,9 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				resultValue.setText(String.valueOf(Math.round(result * 100.00)/100.00) + tempArray[intNewSpnVal]);
 				if(Settings.getVibrate(getBaseContext())){
 					v.vibrate(Settings.getVibrateInterval(getBaseContext()));
+				}
+				if(Settings.getSound(getBaseContext())){
+					SoundPlayer.play(this, R.raw.answer);
 				}
 				break;
 			
@@ -226,9 +232,9 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				resultValue.setText(String.valueOf(result) + kitchenArray[intNewSpnVal]);
 				if(Settings.getVibrate(getBaseContext())){
 					v.vibrate(Settings.getVibrateInterval(getBaseContext()));
+				}
 				if(Settings.getSound(getBaseContext())){
 					SoundPlayer.play(this, R.raw.answer);
-				}
 				}
 				break;
 			case 3://Distance
@@ -239,6 +245,9 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				resultValue.setText(String.valueOf(result) + distanceArray[intNewSpnVal]);
 				if(Settings.getVibrate(getBaseContext())){
 					v.vibrate(Settings.getVibrateInterval(getBaseContext()));
+				}
+				if(Settings.getSound(getBaseContext())){
+					SoundPlayer.play(this, R.raw.answer);
 				}
 				break;
 			default:
