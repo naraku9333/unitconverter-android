@@ -6,11 +6,9 @@ import java.util.regex.Pattern;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
@@ -37,7 +35,8 @@ import android.widget.Toast;
  * References:
  * 1: http://coderzheaven.com/2011/07/regex-validation-for-only-removing-invalid-characters-in-android/
  * 2: http://stackoverflow.com/questions/2586301/set-inputtype-for-an-edittext
- * 
+ * 3: http://www.kaloer.com/android-preferences
+ * 4: http://stackoverflow.com/questions/1397361/how-do-i-restart-an-android-activity
  */
 public class ConverterActivity extends Activity implements OnClickListener{
 	
@@ -61,14 +60,24 @@ public class ConverterActivity extends Activity implements OnClickListener{
 	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState){
-		super.onCreate(savedInstanceState);
 		
 		 Log.d(TAG,"ConverterActivity: onCreate()");//DBG
 		 
+		 //get the theme to set
+		 switch(Settings.getCustomTheme()){
+		 case 0:
+			 setTheme(android.R.style.Theme_Black);
+			 break;
+		 case 1:
+			 setTheme(android.R.style.Theme_Light);
+			 break;
+		 }
 		 
+		 super.onCreate(savedInstanceState);
 		 setContentView(R.layout.converter);
 		 
-		 //get listview item index from intent
+		 //get listview selected item index from intent
+		 //for selected conversion
 		 Bundle extras = getIntent().getExtras();
 		 if(extras != null)
 			 unit = extras.getInt("unit");
@@ -120,7 +129,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			 break;
 			
 		 case 3:
-			 setTitle("distance Converter");
+			 setTitle("Distance Converter");
 			 adapter = ArrayAdapter.createFromResource(this, 
 					 R.array.distance_array, android.R.layout.simple_spinner_item);
 			 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -146,6 +155,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 	
 	/**
 	 * Create menu
+	 * Menu code referenced from book "Hello Android"
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu){
@@ -180,13 +190,13 @@ public class ConverterActivity extends Activity implements OnClickListener{
 	 */
 	@Override
 	public void onClick(View view) {
-		//Retire shared preferences and set time for vibrate
-		int vibrate_time = 1000;
-		
+			
 		if(view.getId() == R.id.btnConvert){
 			double start = 0d, 
 	                result = 0d;
+			//resource to fill arrays
 			Resources res = getResources();
+			
 			// Get instance of Vibrator from current Context
 			Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 			
@@ -196,10 +206,13 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				if(validate(startValue.getText().toString()) == true){
 
 					String[] baseArray= res.getStringArray(R.array.base_array);
+					
+					//cast object and call specific converter
 					resultValue.setText(((BaseConversion) b)
-							.convert(intOldSpnVal, intNewSpnVal, startValue.getText().toString()) + baseArray[intNewSpnVal-2]);
+							.convert(intOldSpnVal, intNewSpnVal, startValue.getText()
+									.toString()) + baseArray[intNewSpnVal-2]);
 				}
-				else{
+				else{//show message if invalid char
 					Toast.makeText(getApplicationContext(),
 							"Enter only numbers 0 - 9,\n and/or letters A -F", Toast.LENGTH_SHORT).show();
 				}
@@ -216,6 +229,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				String[] tempArray= res.getStringArray(R.array.temp_array);
 				result = ((TempConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
 				resultValue.setText(String.valueOf(Math.round(result * 100.00)/100.00) + tempArray[intNewSpnVal]);
+				
 				if(Settings.getVibrate(getBaseContext())){
 					v.vibrate(Settings.getVibrateInterval(getBaseContext()));
 				}
@@ -230,6 +244,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				result = ((KitchenConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
 				result = Math.round(result *100.0)/100.0;
 				resultValue.setText(String.valueOf(result) + kitchenArray[intNewSpnVal]);
+				
 				if(Settings.getVibrate(getBaseContext())){
 					v.vibrate(Settings.getVibrateInterval(getBaseContext()));
 				}
@@ -243,6 +258,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				result = ((DistanceConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
 				result = Math.round(result *100.0)/100.0;
 				resultValue.setText(String.valueOf(result) + distanceArray[intNewSpnVal]);
+				
 				if(Settings.getVibrate(getBaseContext())){
 					v.vibrate(Settings.getVibrateInterval(getBaseContext()));
 				}
@@ -319,5 +335,22 @@ public class ConverterActivity extends Activity implements OnClickListener{
         else
         	return false;
      }
+
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onResume()
+	 */
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		//check if this activity should be "refreshed"
+		//stop and start activity if true
+		if(Settings.getCRefresh()){
+			Settings.setCRefresh(false);
+			Intent intent = getIntent();
+	    	finish();
+	    	startActivity(intent);
+		}
+		super.onResume();
+	}
 }
 

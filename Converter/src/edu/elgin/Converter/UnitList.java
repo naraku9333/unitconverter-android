@@ -31,9 +31,18 @@ public class UnitList extends ListActivity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    	Log.d(TAG,"UnitList: onCreate()");//DBG
         
-        Log.d(TAG,"UnitList: onCreate()");//DBG
+    	//get the theme to set
+    	 switch(Settings.getCustomTheme()){
+		 case 0:
+			 setTheme(android.R.style.Theme_Black);
+			 break;
+		 case 1:
+			 setTheme(android.R.style.Theme_Light);
+			 break;
+		 }
+        super.onCreate(savedInstanceState);
         
         //get list items and add to ListAdapter
         //items can be easily added
@@ -42,21 +51,16 @@ public class UnitList extends ListActivity {
         
        
         ListView list = getListView();
-        ColorDrawable draw = new ColorDrawable(this.getResources().getColor(R.color.converter_background));
-        list.setBackgroundDrawable(draw);
+       // ColorDrawable draw = new ColorDrawable(this.getResources().getColor(R.color.converter_background));
+       // list.setBackgroundDrawable(draw);
 
         list.setTextFilterEnabled(true);
         
-       
-        
-        
         //create click listener for array items
         list.setOnItemClickListener(new OnItemClickListener(){
-        	public void onItemClick(AdapterView<?> parent, View view, int pos, long id){
-        		
+        	public void onItemClick(AdapterView<?> parent, View view, int pos, long id){	
         		 Log.d(TAG,"UnitList: onItemClick()");//DBG
         		 
-        		//TODO:	call appropriate method for item click
         		switch(pos){
         		case 0:
         		default:
@@ -94,5 +98,22 @@ public class UnitList extends ListActivity {
 			return true;
 		}
 		return false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onResume()
+	 */
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		//check if this activity should be "refreshed"
+		//stop and start activity if true
+		if(Settings.getURefresh()){
+			Settings.setURefresh(false);
+			Intent intent = getIntent();
+	    	finish();
+	    	startActivity(intent);
+		}
+		super.onResume();
 	}
 }
