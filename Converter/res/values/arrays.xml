@@ -28,4 +28,87 @@
         <item>Lite</item>
     </string-array>
     
+    <string-array name="list_item_array">
+    	<item>Numeric Base</item>
+    	<item>Temperature</item>
+    	<item>Kitchen Volume</item>
+    	<item>Distance</item>
+    </string-array>
+    
+    <string-array name="temp_array">
+    	<item>\t\tCelsius</item>
+    	<item>\t\tFahreneit</item>
+    	<item>\t\tKelvin</item>
+    	<item>\t\tNewton</item>
+    	<item>\t\tDelisle</item>
+    	<item>\t\tRankine</item>
+    	<item>\t\tReaumur</item>
+    	<item>\t\tRomer</item>
+    </string-array>
+    
+     <string-array name="kvol_array">
+    	<item>\t\tTeaspoons</item>
+    	<item>\t\tTablespoons</item>
+    	<item>\t\tFluid Ounces</item>
+    	<item>\t\tCups</item>
+    	<item>\t\tPints</item>
+    	<item>\t\tQuarts</item>
+    	<item>\t\tGallons</item>
+    </string-array>
+    
+    <string-array name="distance_array">
+    	<item>\t\tAngstroms</item>
+    	<item>\t\tNanometers (nm)</item>
+    	<item>\t\tMicroinches</item>
+    	<item>\t\tMicrometres (micron)</item>
+    	<item>\t\tMils</item>
+    	<item>\t\tMillimeters (mm)</item>
+    	<item>\t\tInches (in)</item>
+    	<item>\t\Centimeters (cm)</item>
+    	<item>\t\tDecimeters (dm)</item>
+    	<item>\t\tFeet (ft)</item>
+    	<item>\t\tMeters (m)</item>
+    	<item>\t\tyards (yd)</item>
+    	<item>\t\tKilometers (km)</item>
+    	<item>\t\tMiles</item>
+    </string-array>
+    
+    <string-array name="base_array">
+    	<item>\t\tBinary (base 2)</item>
+    	<item>\t\tTernary (base 3)</item>
+    	<item>\t\tQuaternary (base 4)</item>
+    	<item>\t\tQuinary (base 5)</item>
+    	<item>\t\tSenary (base 6)</item>
+    	<item>\t\tSeptenary (base 7)</item>
+    	<item>\t\tOctal (base 8)</item>
+    	<item>\t\tNonary (base 9)</item>
+    	<item>\t\tDecimal (base 10)</item>
+    	<item>\t\tUndecimal (base 11)</item>
+    	<item>\t\tDuodecimal (base 12)</item>
+    	<item>\t\tTridecimal (base 13)</item>
+    	<item>\t\tTetradecimal (base 14)</item>
+    	<item>\t\tPentadecimal (base 15)</item>
+    	<item>\t\tHexadecimal (base 16)</item>
+    	<item>\t\tSeptendecimal( base 17)</item>
+    	<item>\t\tOctodecimal (base 18)</item>
+    	<item>\t\tNonadecimal (base 19)</item>
+    	<item>\t\tVigesimal (base 20)</item>
+    	<item>\t\tUnovigesimal (base 21)</item>
+    	<item>\t\tDuovigesimal (base 22)</item>
+    	<item>\t\tTriovigesimal (base 23)</item>
+    	<item>\t\tQuadrovigesimal (base 24)</item>
+    	<item>\t\tPentavigesimal( base 25)</item>
+    	<item>\t\tHexavigesimal (base 26)</item>
+    	<item>\t\tHeptovigesimal (base 27)</item>
+    	<item>\t\tOctovigesimal (base 28)</item>
+    	<item>\t\tNovovigesimal (base 29)</item>
+    	<item>\t\tTrigesimal (base 30)</item>
+    	<item>\t\tUnotrigesimal (base 31)</item>
+    	<item>\t\tDuotrigesimal (base 32)</item>
+    	<item>\t\tTriotrigesimal (base 33)</item>
+    	<item>\t\tQuadrotrigesimal (base 34)</item>
+    	<item>\t\tQuintotrigesimal (base 35)</item>
+    	<item>\t\tHexatrigesimal (base 36)</item>
+    </string-array>
+    
 </resources>
