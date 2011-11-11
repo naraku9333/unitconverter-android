@@ -34,11 +34,14 @@ public class UnitList extends ListActivity {
     	Log.d(TAG,"UnitList: onCreate()");//DBG
         
     	//get the theme to set
-    	 switch(Settings.getCustomTheme()){
-		 case 0:
-			 setTheme(android.R.style.Theme_Black);
+    	 switch(Settings.getCustomTheme(getBaseContext())){
+    	 case 0:
+			 setTheme(R.style.grey);
 			 break;
 		 case 1:
+			 setTheme(android.R.style.Theme_Black);
+			 break;
+		 case 2:
 			 setTheme(android.R.style.Theme_Light);
 			 break;
 		 }

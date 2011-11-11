@@ -22,8 +22,12 @@
   		android:entries="@array/vibrate_interval"
   		android:entryValues="@array/vibrate_interval_values"
   		android:dependency="vibrate" />
-  	<Preference
+  	<ListPreference
   	    android:name="@+id/settings"
   	    android:key="change_theme"	
-  		android:summary="Change background color theme"/>
+  	    android:title="Change Theme"
+  		android:summary="Change background color theme"
+  		android:entries="@array/bgcolor_text"
+  		android:entryValues="@array/bgcolor_vals"/>
+  
 </PreferenceScreen>

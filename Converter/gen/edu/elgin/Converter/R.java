@@ -9,12 +9,13 @@ package edu.elgin.Converter;
 
 public final class R {
     public static final class array {
-        public static final int base_array=0x7f060007;
-        public static final int distance_array=0x7f060005;
-        public static final int empty_array=0x7f060006;
-        public static final int kvol_array=0x7f060004;
-        public static final int list_item_array=0x7f060002;
-        public static final int temp_array=0x7f060003;
+        public static final int base_array=0x7f060008;
+        public static final int bgcolor_text=0x7f060003;
+        public static final int bgcolor_vals=0x7f060002;
+        public static final int distance_array=0x7f060007;
+        public static final int kvol_array=0x7f060006;
+        public static final int list_item_array=0x7f060004;
+        public static final int temp_array=0x7f060005;
         public static final int vibrate_interval=0x7f060000;
         public static final int vibrate_interval_values=0x7f060001;
     }

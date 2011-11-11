@@ -46,6 +46,7 @@
     	<item>\t\tQuarts</item>
     	<item>\t\tGallons</item>
     </string-array>
+    
     <string-array name="distance_array">
     	<item>\t\tAngstroms</item>
     	<item>\t\tNanometers (nm)</item>
@@ -61,11 +62,6 @@
     	<item>\t\tyards (yd)</item>
     	<item>\t\tKilometers (km)</item>
     	<item>\t\tMiles</item>
-    </string-array>
-    <string-array name="empty_array">
-    	<item> </item>
-    	<item> </item>
-    	<item> </item>
     </string-array>
     
     <string-array name="base_array">

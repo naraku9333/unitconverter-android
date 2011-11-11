@@ -25,7 +25,6 @@ public class Settings<SharedPreference> extends PreferenceActivity implements On
 	private static final boolean OPT_VIBATE_DEFAULT = true;
 	private static final String OPT_SOUND = "sound";
 	private static final boolean OPT_SOUND_DEFAULT = true;
-	private static int theme = 0;//switch variable
 	private static boolean unit_refresh = false;//refresh unit list screen
 	private static boolean converter_refresh = false;//refresh converter screen
 	
@@ -41,9 +40,8 @@ public class Settings<SharedPreference> extends PreferenceActivity implements On
 		themePref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			 
             public boolean onPreferenceClick(Preference preference) {
-                //for now as there are only 2 themes 
-            	theme = (theme == 0) ? 1 : 0;
-            	unit_refresh = converter_refresh = true;//DBG
+            	//if clicked theme likely changed, set refreshs true 
+            	unit_refresh = converter_refresh = true;
                 return false;
             }
 		});
@@ -62,13 +60,11 @@ public class Settings<SharedPreference> extends PreferenceActivity implements On
 		return PreferenceManager.getDefaultSharedPreferences(context)
 				.getBoolean(OPT_SOUND, OPT_SOUND_DEFAULT);
 	}
-	public static int getCustomTheme(){
-		return theme;
+	public static int getCustomTheme(Context context){
+		return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context)
+				.getString("change_theme", "0"));
 	}
-	public static void setCustomTheme(int i){
-		theme = i;
-	}
-	
+		
 	//TODO find a cleaner more efficient way
 	public static boolean getCRefresh(){
 		return converter_refresh;
@@ -82,7 +78,6 @@ public class Settings<SharedPreference> extends PreferenceActivity implements On
 	public static void setURefresh(boolean val){
 		unit_refresh = val;
 	}
-	
 	
 	@Override
 	public boolean onPreferenceClick(Preference preference) {

@@ -64,11 +64,14 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		 Log.d(TAG,"ConverterActivity: onCreate()");//DBG
 		 
 		 //get the theme to set
-		 switch(Settings.getCustomTheme()){
+		 switch(Settings.getCustomTheme(getBaseContext())){
 		 case 0:
-			 setTheme(android.R.style.Theme_Black);
+			 setTheme(R.style.grey);
 			 break;
 		 case 1:
+			 setTheme(android.R.style.Theme_Black);
+			 break;
+		 case 2:
 			 setTheme(android.R.style.Theme_Light);
 			 break;
 		 }
@@ -140,7 +143,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		 default:
 			 setTitle("Converter");
 			  adapter = ArrayAdapter.createFromResource(this, 
-					 R.array.empty_array, android.R.layout.simple_spinner_item);
+					 0, android.R.layout.simple_spinner_item);
 			 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			 break;
 		 }
