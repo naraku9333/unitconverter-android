@@ -37,6 +37,11 @@ import android.widget.Toast;
  * 2: http://stackoverflow.com/questions/2586301/set-inputtype-for-an-edittext
  * 3: http://www.kaloer.com/android-preferences
  * 4: http://stackoverflow.com/questions/1397361/how-do-i-restart-an-android-activity
+ * 
+ * TODO change input type of temp, need to allow neg values
+ * TODO	fix grey theme
+ * TODO	add more themes
+ * TODO	change theme list preference to a dialog with custom color buttons
  */
 public class ConverterActivity extends Activity implements OnClickListener{
 	
@@ -72,6 +77,12 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			 setTheme(android.R.style.Theme_Black);
 			 break;
 		 case 2:
+			 setTheme(R.style.blue);
+			 break;
+		 case 3:
+			 setTheme(R.style.red);
+			 break;
+		 case 4:
 			 setTheme(android.R.style.Theme_Light);
 			 break;
 		 }
@@ -107,8 +118,8 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		 case 0:
 			 setTitle("Base Converter");
 			  adapter = ArrayAdapter.createFromResource(this, 
-					 R.array.base_array,android.R.layout.simple_spinner_item);
-			 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+					 R.array.base_array,R.layout.my_spinner_item);
+			 adapter.setDropDownViewResource(R.layout.my_spinner_dropdown_item);
 			 startValue.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
 			 b = new BaseConversion();
 			 break;
@@ -116,8 +127,8 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		 case 1:
 			 setTitle("Temperature Converter");
 			  adapter = ArrayAdapter.createFromResource(this, 
-					 R.array.temp_array, android.R.layout.simple_spinner_item);
-			 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+					 R.array.temp_array, R.layout.my_spinner_item);
+			 adapter.setDropDownViewResource(R.layout.my_spinner_dropdown_item);
 			 startValue.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 			 b = new TempConversion();
 			 break;
@@ -125,8 +136,8 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		 case 2:
 			 setTitle("Kitchen Volume Converter");
 			 adapter = ArrayAdapter.createFromResource(this, 
-					 R.array.kvol_array, android.R.layout.simple_spinner_item);
-			 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+					 R.array.kvol_array, R.layout.my_spinner_item);
+			 adapter.setDropDownViewResource(R.layout.my_spinner_dropdown_item);
 			 startValue.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 			 b = new KitchenConversion();
 			 break;
@@ -134,8 +145,8 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		 case 3:
 			 setTitle("Distance Converter");
 			 adapter = ArrayAdapter.createFromResource(this, 
-					 R.array.distance_array, android.R.layout.simple_spinner_item);
-			 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+					 R.array.distance_array, R.layout.my_spinner_item);
+			 adapter.setDropDownViewResource(R.layout.my_spinner_dropdown_item);
 			 startValue.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 			 b = new DistanceConversion();
 			 break;
@@ -143,8 +154,8 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		 default:
 			 setTitle("Converter");
 			  adapter = ArrayAdapter.createFromResource(this, 
-					 0, android.R.layout.simple_spinner_item);
-			 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+					 0, R.layout.my_spinner_item);
+			 adapter.setDropDownViewResource(R.layout.my_spinner_dropdown_item);
 			 break;
 		 }
 		 
@@ -203,6 +214,8 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			// Get instance of Vibrator from current Context
 			Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 			
+			//used for displaying correct num of decimals
+			double r = Settings.getDigits(getBaseContext());
 			
 			switch(unit){
 			case 0://Base
@@ -231,7 +244,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				start = Double.valueOf(startValue.getText().toString());
 				String[] tempArray= res.getStringArray(R.array.temp_array);
 				result = ((TempConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
-				resultValue.setText(String.valueOf(Math.round(result * 100.00)/100.00) + tempArray[intNewSpnVal]);
+				resultValue.setText(String.valueOf(Math.round(result * r)/r) + tempArray[intNewSpnVal]);
 				
 				if(Settings.getVibrate(getBaseContext())){
 					v.vibrate(Settings.getVibrateInterval(getBaseContext()));
@@ -245,7 +258,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				start = Double.valueOf(startValue.getText().toString());
 				String[] kitchenArray= res.getStringArray(R.array.kvol_array);
 				result = ((KitchenConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
-				result = Math.round(result *100.0)/100.0;
+				result = Math.round(result *r)/r;
 				resultValue.setText(String.valueOf(result) + kitchenArray[intNewSpnVal]);
 				
 				if(Settings.getVibrate(getBaseContext())){
@@ -259,7 +272,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				start = Double.valueOf(startValue.getText().toString());
 				String[] distanceArray = res.getStringArray(R.array.distance_array);
 				result = ((DistanceConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
-				result = Math.round(result *100.0)/100.0;
+				result = Math.round(result *r)/r;
 				resultValue.setText(String.valueOf(result) + distanceArray[intNewSpnVal]);
 				
 				if(Settings.getVibrate(getBaseContext())){

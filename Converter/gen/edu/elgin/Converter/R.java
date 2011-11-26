@@ -9,13 +9,15 @@ package edu.elgin.Converter;
 
 public final class R {
     public static final class array {
-        public static final int base_array=0x7f060008;
-        public static final int bgcolor_text=0x7f060003;
-        public static final int bgcolor_vals=0x7f060002;
-        public static final int distance_array=0x7f060007;
-        public static final int kvol_array=0x7f060006;
-        public static final int list_item_array=0x7f060004;
-        public static final int temp_array=0x7f060005;
+        public static final int base_array=0x7f06000a;
+        public static final int bgcolor_text=0x7f060005;
+        public static final int bgcolor_vals=0x7f060004;
+        public static final int digits_nums=0x7f060002;
+        public static final int digits_vals=0x7f060003;
+        public static final int distance_array=0x7f060009;
+        public static final int kvol_array=0x7f060008;
+        public static final int list_item_array=0x7f060006;
+        public static final int temp_array=0x7f060007;
         public static final int vibrate_interval=0x7f060000;
         public static final int vibrate_interval_values=0x7f060001;
     }
@@ -24,6 +26,7 @@ public final class R {
     public static final class color {
         public static final int converter_background=0x7f070000;
         public static final int converter_text=0x7f070001;
+        public static final int spinner_color=0x7f070002;
     }
     public static final class drawable {
         public static final int icon=0x7f020000;
@@ -51,6 +54,8 @@ public final class R {
         public static final int converter=0x7f030001;
         public static final int list_item=0x7f030002;
         public static final int main=0x7f030003;
+        public static final int my_spinner_dropdown_item=0x7f030004;
+        public static final int my_spinner_item=0x7f030005;
     }
     public static final class menu {
         public static final int menu=0x7f0a0000;
@@ -64,6 +69,8 @@ public final class R {
         public static final int about_title=0x7f080009;
         public static final int app_name=0x7f080001;
         public static final int base_title=0x7f080004;
+        public static final int digit_title=0x7f080010;
+        public static final int digits=0x7f080011;
         public static final int hello=0x7f080000;
         public static final int settings_label=0x7f080006;
         public static final int settings_title=0x7f080007;
@@ -77,9 +84,17 @@ public final class R {
         public static final int vibrate_title=0x7f08000c;
     }
     public static final class style {
-        public static final int dark=0x7f090002;
+        /**          <item name="android:textColor">#000000</item>    
+         */
+        public static final int blue=0x7f090001;
+        public static final int dark=0x7f090004;
+        /**          <item name="android:textColor">#000000</item>    
+         */
         public static final int grey=0x7f090000;
-        public static final int lite=0x7f090001;
+        public static final int lite=0x7f090003;
+        /**          <item name="android:textColor">#000000</item>    
+         */
+        public static final int red=0x7f090002;
     }
     public static final class xml {
         public static final int settings=0x7f040000;

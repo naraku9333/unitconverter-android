@@ -25,6 +25,7 @@ public class Settings<SharedPreference> extends PreferenceActivity implements On
 	private static final boolean OPT_VIBATE_DEFAULT = true;
 	private static final String OPT_SOUND = "sound";
 	private static final boolean OPT_SOUND_DEFAULT = true;
+
 	private static boolean unit_refresh = false;//refresh unit list screen
 	private static boolean converter_refresh = false;//refresh converter screen
 	
@@ -63,6 +64,10 @@ public class Settings<SharedPreference> extends PreferenceActivity implements On
 	public static int getCustomTheme(Context context){
 		return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context)
 				.getString("change_theme", "0"));
+	}
+	public static double getDigits(Context context){
+		return Double.parseDouble(PreferenceManager.getDefaultSharedPreferences(context)
+				.getString("digits", "0"));
 	}
 		
 	//TODO find a cleaner more efficient way

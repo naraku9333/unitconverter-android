@@ -15,17 +15,35 @@
 	     <item name="4000">4000</item>
          <item name="5000">5000</item>
     </string-array>
-
+	
+    <string-array name="digits_nums">
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    
+    <string-array name="digits_vals">
+        <item>100</item>
+        <item>1000</item>
+        <item>10000</item>
+        <item>100000</item>
+    </string-array>
+    
     <string-array name="bgcolor_vals">
     	<item>0</item>
     	<item>1</item>
     	<item>2</item>
+    	<item>3</item>
+    	<item>4</item>
     </string-array>
     
     <string-array name="bgcolor_text">
         <item>Grey</item>
-        <item>Dark</item>
-        <item>Lite</item>
+        <item>Black</item>
+        <item>Blue</item>
+        <item>Red</item>
+        <item>White</item>
     </string-array>
     
     <string-array name="list_item_array">

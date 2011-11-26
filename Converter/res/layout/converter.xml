@@ -18,7 +18,7 @@
     <EditText android:id="@+id/edtStartValue" 
     	android:layout_width="match_parent" 
     	android:layout_height="wrap_content"
-    	android:text="0">
+    	android:text="1">
     </EditText>
     
     <TextView android:layout_weight="0.06" 
@@ -34,7 +34,7 @@
     	android:prompt="@string/spn_from_title"
     	android:layout_height="wrap_content" 
     	android:layout_width="match_parent"
-    	android:layout_gravity="center">
+    	android:layout_gravity="center">    	
     </Spinner>
     
     <TextView android:text="	To..." 

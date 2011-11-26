@@ -8,6 +8,14 @@
   		android:title="@string/sound_title"
   		android:summary="@string/sound"
   		android:defaultValue="true" />
+  	<ListPreference 
+  	    android:name="@+id/settings"
+  	    android:key="digits"
+  	    android:title="@string/digit_title"
+  	    android:summary="@string/digits"
+  	    android:entries="@array/digits_nums"
+  	    android:entryValues="@array/digits_vals"
+  	    android:defaultValue="0" />
   	<CheckBoxPreference 
   		android:name="@+id/settings"
   		android:key="vibrate"
@@ -28,6 +36,7 @@
   	    android:title="Change Theme"
   		android:summary="Change background color theme"
   		android:entries="@array/bgcolor_text"
+  		android:defaultValue="0"
   		android:entryValues="@array/bgcolor_vals"/>
   
 </PreferenceScreen>

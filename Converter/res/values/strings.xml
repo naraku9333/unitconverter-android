@@ -18,5 +18,7 @@
     <string name="vibrate_length">Select how long you wish to vibrate on the returning an answer</string>
     <string name="sound_title">Sound</string>
     <string name="sound">Plays a sound when answer is returned</string>
+    <string name="digit_title">Decimals</string>
+    <string name="digits">Set number of decimal places to display in result</string>
     
 </resources>
