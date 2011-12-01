@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="converter_background">#EEE9E9</color>
+<!--     Theme colors -->
+    <color name="converter_grey">#EEE9E9</color>
+    <color name="converter_blue">#4169E1</color>
+    <color name="converter_red">#FF0000</color>
+    <color name="converter_plum">#DDA0DD</color>
     <color name="converter_text">#000000</color>
-    <color name="spinner_color">#EEEEE0</color>
+    
 </resources>

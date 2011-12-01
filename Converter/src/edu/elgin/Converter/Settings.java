@@ -67,7 +67,7 @@ public class Settings<SharedPreference> extends PreferenceActivity implements On
 	}
 	public static double getDigits(Context context){
 		return Double.parseDouble(PreferenceManager.getDefaultSharedPreferences(context)
-				.getString("digits", "0"));
+				.getString("digits", "100"));
 	}
 		
 	//TODO find a cleaner more efficient way

@@ -11,22 +11,34 @@ public final class R {
     public static final class array {
         public static final int base_array=0x7f06000a;
         public static final int bgcolor_text=0x7f060005;
+        /**  Theme selector arrays 
+         */
         public static final int bgcolor_vals=0x7f060004;
+        /**  Digit setting arrays 
+         */
         public static final int digits_nums=0x7f060002;
         public static final int digits_vals=0x7f060003;
         public static final int distance_array=0x7f060009;
         public static final int kvol_array=0x7f060008;
+        /**  Conversion arrays 
+         */
         public static final int list_item_array=0x7f060006;
         public static final int temp_array=0x7f060007;
+        /**  Vibrate setting arrays 
+         */
         public static final int vibrate_interval=0x7f060000;
         public static final int vibrate_interval_values=0x7f060001;
     }
     public static final class attr {
     }
     public static final class color {
-        public static final int converter_background=0x7f070000;
-        public static final int converter_text=0x7f070001;
-        public static final int spinner_color=0x7f070002;
+        public static final int converter_blue=0x7f070001;
+        /**      Theme colors 
+         */
+        public static final int converter_grey=0x7f070000;
+        public static final int converter_plum=0x7f070003;
+        public static final int converter_red=0x7f070002;
+        public static final int converter_text=0x7f070004;
     }
     public static final class drawable {
         public static final int icon=0x7f020000;
@@ -84,16 +96,13 @@ public final class R {
         public static final int vibrate_title=0x7f08000c;
     }
     public static final class style {
-        /**          <item name="android:textColor">#000000</item>    
-         */
         public static final int blue=0x7f090001;
-        public static final int dark=0x7f090004;
-        /**          <item name="android:textColor">#000000</item>    
+        public static final int dark=0x7f090005;
+        /**      Theme styles 
          */
         public static final int grey=0x7f090000;
-        public static final int lite=0x7f090003;
-        /**          <item name="android:textColor">#000000</item>    
-         */
+        public static final int lite=0x7f090004;
+        public static final int plum=0x7f090003;
         public static final int red=0x7f090002;
     }
     public static final class xml {

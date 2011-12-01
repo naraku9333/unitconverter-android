@@ -48,6 +48,9 @@ public class UnitList extends ListActivity {
 			 setTheme(R.style.red);
 			 break;
 		 case 4:
+			 setTheme(R.style.plum);
+			 break;
+		 case 5:
 			 setTheme(android.R.style.Theme_Light);
 			 break;
 		 }

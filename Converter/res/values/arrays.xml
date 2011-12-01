@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<!-- Vibrate setting arrays -->
     <string-array name="vibrate_interval">
         <item name="1000">For 1 second</item>
         <item name="2000">For 2 seconds</item>
@@ -15,7 +16,8 @@
 	     <item name="4000">4000</item>
          <item name="5000">5000</item>
     </string-array>
-	
+    
+<!-- Digit setting arrays -->
     <string-array name="digits_nums">
         <item>2</item>
         <item>3</item>
@@ -29,13 +31,15 @@
         <item>10000</item>
         <item>100000</item>
     </string-array>
-    
+
+<!-- Theme selector arrays -->
     <string-array name="bgcolor_vals">
     	<item>0</item>
     	<item>1</item>
     	<item>2</item>
     	<item>3</item>
     	<item>4</item>
+    	<item>5</item>
     </string-array>
     
     <string-array name="bgcolor_text">
@@ -43,16 +47,18 @@
         <item>Black</item>
         <item>Blue</item>
         <item>Red</item>
+        <item>Plum</item>
         <item>White</item>
     </string-array>
-    
+
+<!-- Conversion arrays -->    
     <string-array name="list_item_array">
     	<item>Numeric Base</item>
     	<item>Temperature</item>
     	<item>Kitchen Volume</item>
     	<item>Distance</item>
     </string-array>
-    
+
     <string-array name="temp_array">
     	<item>\t\tCelsius</item>
     	<item>\t\tFahreneit</item>

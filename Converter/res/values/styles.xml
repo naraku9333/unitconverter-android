@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+<!--     Theme styles -->
 	<style name="grey" parent="@android:style/Theme.Light">
-        <item name="android:background">#EEE9E9</item>
-<!--         <item name="android:textColor">#000000</item>    -->
+        <item name="android:windowBackground">@color/converter_grey</item>
     </style>
     
 	<style name="blue" parent="@android:style/Theme.Light">
-        <item name="android:background">#4169E1</item>
-<!--         <item name="android:textColor">#000000</item>    -->
+        <item name="android:windowBackground">@color/converter_blue</item>
     </style>
     
 	<style name="red" parent="@android:style/Theme.Light">
-        <item name="android:background">#FF0000</item>
-<!--         <item name="android:textColor">#000000</item>    -->
+        <item name="android:windowBackground">@color/converter_red</item>
+    </style>
+    
+	<style name="plum" parent="@android:style/Theme.Light">
+        <item name="android:windowBackground">@color/converter_plum</item>
     </style>
     
 	<style name="lite" parent="@android:style/Theme.Light"></style>

@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.InputType;
@@ -83,6 +84,9 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			 setTheme(R.style.red);
 			 break;
 		 case 4:
+			 setTheme(R.style.plum);
+			 break;
+		 case 5:
 			 setTheme(android.R.style.Theme_Light);
 			 break;
 		 }
@@ -119,7 +123,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			 setTitle("Base Converter");
 			  adapter = ArrayAdapter.createFromResource(this, 
 					 R.array.base_array,R.layout.my_spinner_item);
-			 adapter.setDropDownViewResource(R.layout.my_spinner_dropdown_item);
+			 adapter.setDropDownViewResource(R.layout.my_spinner_dropdown_item);		
 			 startValue.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
 			 b = new BaseConversion();
 			 break;

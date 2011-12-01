@@ -5,6 +5,5 @@
     android:layout_height="?android:attr/listPreferredItemHeight" 
     android:layout_width="match_parent" 
     android:singleLine="true" 
-    android:background="@android:color/transparent"
     style="?android:attr/spinnerDropDownItemStyle" 
     android:id="@android:id/text1" />
