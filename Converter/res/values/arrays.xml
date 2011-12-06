@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    
+<!-- Unit List array -->
+   <string-array name="list_item_array">
+    	<item>Numeric Base</item>
+    	<item>Temperature</item>
+    	<item>Kitchen Volume</item>
+    	<item>Distance</item>
+    	<item>Currency</item>
+    </string-array>
+
 <!-- Vibrate setting arrays -->
     <string-array name="vibrate_interval">
         <item name="1000">For 1 second</item>
@@ -52,13 +62,6 @@
     </string-array>
 
 <!-- Conversion arrays -->    
-    <string-array name="list_item_array">
-    	<item>Numeric Base</item>
-    	<item>Temperature</item>
-    	<item>Kitchen Volume</item>
-    	<item>Distance</item>
-    </string-array>
-
     <string-array name="temp_array">
     	<item>\t\tCelsius</item>
     	<item>\t\tFahreneit</item>
@@ -135,4 +138,83 @@
     	<item>\t\tHexatrigesimal (base 36)</item>
     </string-array>
     
+    <string-array name="currency_array">
+        <item>AED - United Arab Emirates Dirham</item>
+        <item>ARS - Argentine Peso</item>
+        <item>AUD - Australian Dollar</item>
+        <item> BBD - Barbadian Dollar</item>
+        <item> BHD - Bahraini Dinar</item>
+        <item> BOB - Bolivian Boliviano</item>
+        <item> BRL - Brazilian Real</item>
+        <item> CAD - Canadian Dollar</item>
+        <item> CHF - Swiss Franc</item>
+        <item> CLP - Chilean Peso</item>
+        <item> CNY - Chinese Yuan</item>
+        <item> COP - Colombian Peso</item>
+        <item> CZK - Czech Koruna</item>
+        <item> DKK - Danish Krone</item>
+        <item> EGP - Egyptian Pound</item>
+        <item> EUR - Euro</item>
+        <item> GBP - British Pound Sterling</item>
+        <item> HKD - Hong Kong Dollar</item>
+        <item> HUF - Hungarian Forint</item>
+        <item> IDR - Indonesian Rupiah</item>
+        <item> ILS - Israeli Sheqel</item>
+        <item> INR - Indian Rupee</item>
+        <item> ISK - Icelandic Krona</item>
+        <item> JMD - Jamaican Dollar</item>
+        <item> JOD - Jordanian Dinar</item>
+        <item> JPY - Japanese Yen</item>
+        <item> KES - Kenyan Shilling</item>
+        <item> KRW - South Korean Won</item>
+        <item> KWD - Kuwaiti Dinar</item>
+        <item> LBP - Lebanese Pound</item>
+        <item> LKR - Sri Lankan Rupee</item>
+        <item> LTL - Lithuanian Litas</item>
+        <item> LVL - Latvian Lats</item>
+        <item> MAD - Moroccan Dirham</item>
+        <item> MXN - Mexican Peso</item>
+        <item> MYR - Malaysian Ringgit</item>
+        <item> NAD - Namibian Dollar</item>
+        <item> NGN - Nigerian Naira</item>
+        <item> NOK - Norwegian Krone</item>
+        <item> NPR - Nepalese Rupee</item>
+        <item> NZD - New Zealand Dollar</item>
+        <item> OMR - Omani Rial</item>
+        <item> PAB - Panamanian Balboa</item>
+        <item> PEN - Peru Nuevo Sol</item>
+        <item> PHP - Philippine Peso</item>
+        <item> PKR - Pakistani Rupee</item>
+        <item> PLN - Polish Zloty</item>
+        <item> QAR - Qatari Riyal</item>
+        <item> RON - Romanian Leu</item>
+        <item> RUB - Russian Rouble</item>
+        <item> SAR - Saudi Riyal</item>
+        <item> SEK - Swedish Krona</item>
+        <item> SGD - Singapore Dollar</item>
+        <item> THB - Thai Baht</item>
+        <item> TRY - Turkish Lira</item>
+        <item> TWD - Taiwanese Dollar</item>
+        <item> UAH - Ukraine Hryvnia</item>
+        <item> USD - US Dollar</item>
+        <item> UYU - Uruguayan Peso</item>
+        <item> VEF - Venezuelan Bolivar</item>
+        <item> VND - Vietnamese Dong</item>
+        <item> XAF - Central African CFA franc</item>
+        <item> XCD - East Caribbean Dollar</item>
+        <item> XOF - West African CFA franc</item>
+        <item> ZAR - South African Rand</item>
+    </string-array>
 </resources>
+
+
+
+
+
+
+
+
+
+
+
+

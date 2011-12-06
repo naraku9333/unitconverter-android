@@ -11,7 +11,7 @@ import android.util.Log;
  */
 public class DistanceConversion {
 
-	private final String TAG = "Conveter";
+	private final String TAG = "Converter";
 	
 	
 	public  double convert(int from, int to, double start){

@@ -12,7 +12,7 @@ import android.util.Log;
  */
 public class BaseConversion {
 	
-	private static final String TAG = "Sudoku";
+	private static final String TAG = "Converter";//dbg
 	
 	/**
 	 * calls correct BaseConversion func
@@ -24,8 +24,7 @@ public class BaseConversion {
 		
 		String resultValue;
 		if(intOldSpnVal == 10){
-			String s = fromBaseTen(startValue, intNewSpnVal);
-			resultValue = s;
+			resultValue = fromBaseTen(startValue, intNewSpnVal);
 		}
 		else if(intNewSpnVal == 10){
 			BigInteger res = toBaseTen(startValue, intOldSpnVal);

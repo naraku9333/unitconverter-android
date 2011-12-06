@@ -20,7 +20,8 @@ import android.util.Log;
  * @param <SharedPreference>
  */
 public class Settings<SharedPreference> extends PreferenceActivity implements OnPreferenceClickListener{
-	private final static String TAG = "Converter";
+	private final static String TAG = "Converter";//dbg
+	
 	private static final String OPT_VIBRATE = "vibrate";
 	private static final boolean OPT_VIBATE_DEFAULT = true;
 	private static final String OPT_SOUND = "sound";

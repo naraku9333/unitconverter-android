@@ -7,7 +7,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.InputType;
@@ -59,7 +58,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 	
 	//instead of a seperate object per class
 	//i'll use this since all classes inherit Object AKAIK
-	private Object b;
+	private Object obj;
 	
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -123,38 +122,61 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			 setTitle("Base Converter");
 			  adapter = ArrayAdapter.createFromResource(this, 
 					 R.array.base_array,R.layout.my_spinner_item);
-			 adapter.setDropDownViewResource(R.layout.my_spinner_dropdown_item);		
+			  
+			 adapter.setDropDownViewResource(R.layout.my_spinner_dropdown_item);
+			 
 			 startValue.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
-			 b = new BaseConversion();
+			 
+			 obj = new BaseConversion();
 			 break;
 			 
 		 case 1:
 			 setTitle("Temperature Converter");
 			  adapter = ArrayAdapter.createFromResource(this, 
 					 R.array.temp_array, R.layout.my_spinner_item);
+			  
 			 adapter.setDropDownViewResource(R.layout.my_spinner_dropdown_item);
+			 
 			 startValue.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-			 b = new TempConversion();
+			 
+			 obj = new TempConversion();
 			 break;
 			 
 		 case 2:
 			 setTitle("Kitchen Volume Converter");
 			 adapter = ArrayAdapter.createFromResource(this, 
 					 R.array.kvol_array, R.layout.my_spinner_item);
+			 
 			 adapter.setDropDownViewResource(R.layout.my_spinner_dropdown_item);
+			 
 			 startValue.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-			 b = new KitchenConversion();
+			 
+			 obj = new KitchenConversion();
 			 break;
 			
 		 case 3:
 			 setTitle("Distance Converter");
 			 adapter = ArrayAdapter.createFromResource(this, 
 					 R.array.distance_array, R.layout.my_spinner_item);
+			 
 			 adapter.setDropDownViewResource(R.layout.my_spinner_dropdown_item);
+			 
 			 startValue.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-			 b = new DistanceConversion();
+			 
+			 obj = new DistanceConversion();
 			 break;
 			 
+		 case 4:
+			 setTitle("Currency Converter");
+			 adapter = ArrayAdapter.createFromResource(this, 
+					 R.array.currency_array, R.layout.my_spinner_item);
+			 
+			 adapter.setDropDownViewResource(R.layout.my_spinner_dropdown_item);
+			 
+			 startValue.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+			 
+			 obj = new CurrencyConversion(this);
+			 break;
 		 default:
 			 setTitle("Converter");
 			  adapter = ArrayAdapter.createFromResource(this, 
@@ -223,12 +245,12 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			
 			switch(unit){
 			case 0://Base
-				if(validate(startValue.getText().toString()) == true){
+				if(validateAlphaNum(startValue.getText().toString()) == true){
 
 					String[] baseArray= res.getStringArray(R.array.base_array);
 					
 					//cast object and call specific converter
-					resultValue.setText(((BaseConversion) b)
+					resultValue.setText(((BaseConversion) obj)
 							.convert(intOldSpnVal, intNewSpnVal, startValue.getText()
 									.toString()) + baseArray[intNewSpnVal-2]);
 				}
@@ -246,8 +268,11 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			case 1://Temp
 				//Get value from editbox
 				start = Double.valueOf(startValue.getText().toString());
+				
 				String[] tempArray= res.getStringArray(R.array.temp_array);
-				result = ((TempConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
+				
+				result = ((TempConversion) obj).convert(intOldSpnVal, intNewSpnVal, start);
+				
 				resultValue.setText(String.valueOf(Math.round(result * r)/r) + tempArray[intNewSpnVal]);
 				
 				if(Settings.getVibrate(getBaseContext())){
@@ -260,9 +285,13 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			
 			case 2://Kitchen
 				start = Double.valueOf(startValue.getText().toString());
+				
 				String[] kitchenArray= res.getStringArray(R.array.kvol_array);
-				result = ((KitchenConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
+				
+				result = ((KitchenConversion) obj).convert(intOldSpnVal, intNewSpnVal, start);
+				
 				result = Math.round(result *r)/r;
+				
 				resultValue.setText(String.valueOf(result) + kitchenArray[intNewSpnVal]);
 				
 				if(Settings.getVibrate(getBaseContext())){
@@ -274,11 +303,35 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				break;
 			case 3://Distance
 				start = Double.valueOf(startValue.getText().toString());
-				String[] distanceArray = res.getStringArray(R.array.distance_array);
-				result = ((DistanceConversion) b).convert(intOldSpnVal, intNewSpnVal, start);
-				result = Math.round(result *r)/r;
-				resultValue.setText(String.valueOf(result) + distanceArray[intNewSpnVal]);
 				
+				String[] distanceArray = res.getStringArray(R.array.distance_array);
+				
+				result = ((DistanceConversion) obj).convert(intOldSpnVal, intNewSpnVal, start);
+				
+				result = Math.round(result *r)/r;
+				
+				resultValue.setText(String.valueOf(result) + distanceArray[intNewSpnVal]);
+							
+				if(Settings.getVibrate(getBaseContext())){
+					v.vibrate(Settings.getVibrateInterval(getBaseContext()));
+				}
+				if(Settings.getSound(getBaseContext())){
+					SoundPlayer.play(this, R.raw.answer);
+				}
+				break;
+			case 4://Currency
+				String[] currencyArray = res.getStringArray(R.array.currency_array);
+				DataList datalist = XMLHandler.getDataList();
+				//cast object and call specific converter
+				//round value and set text
+				result = Math.round(
+						((CurrencyConversion) obj).convert(intOldSpnVal, intNewSpnVal,
+						Double.valueOf(startValue.getText().toString())) * r)/r;
+				//work around for USD
+				int index = (intNewSpnVal > 57)?intNewSpnVal:intNewSpnVal+1;
+				resultValue.setText(String.valueOf(result)
+						 + " " + datalist.getDescription().get(index));
+			
 				if(Settings.getVibrate(getBaseContext())){
 					v.vibrate(Settings.getVibrateInterval(getBaseContext()));
 				}
@@ -311,7 +364,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			//set the correct variable depending on which ListItem clicked
 			switch(unit){
 			case 0://Base Converter
-				//add 2 to pos so spinner val is base
+				//spinner index + 2 is the base
 				if(parent.getId() == R.id.spnFrom)
 					intOldSpnVal = pos + 2;
 			
@@ -322,6 +375,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			case 1://Temperature Converter
 			case 2://Kitchen Volume Converter
 			case 3://Distance Converter
+			case 4://Currency Converter
 				if(parent.getId() == R.id.spnFrom)
 					intOldSpnVal = pos;
 			
@@ -344,7 +398,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 	//validate input for base conversion
 	//allow only numerals and chars a - f
 	//see reference 1
-	private boolean validate(String str)
+	private boolean validateAlphaNum(String str)
     {
         String regex = "^[a-f_A-F0-9]*$";
        

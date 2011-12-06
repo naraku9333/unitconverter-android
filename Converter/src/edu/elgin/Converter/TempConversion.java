@@ -16,29 +16,29 @@ import android.util.Log;
  */
 public class TempConversion {
 
-	private final String TAG = "Converter";
+	private final String TAG = "Converter";//dbg
 	
 	/**
 	 * 
 	 * Sean Sep 22, 2011
-	 * @param fromTemp	the index of item selected from spnFrom
-	 * @param toTemp	the index of selected from spnTo
+	 * @param oldSpn	the index of item selected from spnFrom
+	 * @param newSpn	the index of selected from spnTo
 	 * @return		conversion result
 	 * 
 	 */
-	public  double convert(int fromTemp, int toTemp, double startValue){
-		Log.d(TAG,"TempConversion: convert(), from= " + fromTemp + ", to= " + toTemp);//DBG
+	public  double convert(int oldSpn, int newSpn, double startValue){
+		Log.d(TAG,"TempConversion: convert(), from= " + oldSpn + ", to= " + newSpn);//DBG
 		
 		double resultValue = 0d;
 		
-		if(fromTemp == 0){
-			resultValue = fromCelsius(toTemp, startValue);
+		if(oldSpn == 0){
+			resultValue = fromCelsius(newSpn, startValue);
 		}
-		else if(toTemp == 0){
-			resultValue = toCelsius(fromTemp, startValue);
+		else if(newSpn == 0){
+			resultValue = toCelsius(oldSpn, startValue);
 		}
 		else{
-			resultValue = fromCelsius(toTemp, toCelsius(fromTemp, startValue));
+			resultValue = fromCelsius(newSpn, toCelsius(oldSpn, startValue));
 		}
 		
 		//return result;

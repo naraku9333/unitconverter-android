@@ -2,7 +2,6 @@ package edu.elgin.Converter;
 
 import android.app.ListActivity;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -65,10 +64,11 @@ public class UnitList extends ListActivity {
         ListView list = getListView();
        // ColorDrawable draw = new ColorDrawable(this.getResources().getColor(R.color.converter_background));
        // list.setBackgroundDrawable(draw);
-
+        
         list.setTextFilterEnabled(true);
         
         //create click listener for array items
+        //start activity with selected index added
         list.setOnItemClickListener(new OnItemClickListener(){
         	public void onItemClick(AdapterView<?> parent, View view, int pos, long id){	
         		 Log.d(TAG,"UnitList: onItemClick()");//DBG

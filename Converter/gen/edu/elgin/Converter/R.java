@@ -10,24 +10,27 @@ package edu.elgin.Converter;
 public final class R {
     public static final class array {
         public static final int base_array=0x7f06000a;
-        public static final int bgcolor_text=0x7f060005;
+        public static final int bgcolor_text=0x7f060006;
         /**  Theme selector arrays 
          */
-        public static final int bgcolor_vals=0x7f060004;
+        public static final int bgcolor_vals=0x7f060005;
+        public static final int currency_array=0x7f06000b;
         /**  Digit setting arrays 
          */
-        public static final int digits_nums=0x7f060002;
-        public static final int digits_vals=0x7f060003;
+        public static final int digits_nums=0x7f060003;
+        public static final int digits_vals=0x7f060004;
         public static final int distance_array=0x7f060009;
         public static final int kvol_array=0x7f060008;
+        /**  Unit List array 
+         */
+        public static final int list_item_array=0x7f060000;
         /**  Conversion arrays 
          */
-        public static final int list_item_array=0x7f060006;
         public static final int temp_array=0x7f060007;
         /**  Vibrate setting arrays 
          */
-        public static final int vibrate_interval=0x7f060000;
-        public static final int vibrate_interval_values=0x7f060001;
+        public static final int vibrate_interval=0x7f060001;
+        public static final int vibrate_interval_values=0x7f060002;
     }
     public static final class attr {
     }
@@ -74,6 +77,7 @@ public final class R {
     }
     public static final class raw {
         public static final int answer=0x7f050000;
+        public static final int rss=0x7f050001;
     }
     public static final class string {
         public static final int about_label=0x7f080008;
