@@ -38,5 +38,8 @@
   		android:entries="@array/bgcolor_text"
   		android:defaultValue="0"
   		android:entryValues="@array/bgcolor_vals"/>
+<!--   	<DialogPreference -->
+<!--   	    android:name="@+id/settings" -->
+<!--   	    android:title="test" /> -->
   
 </PreferenceScreen>

@@ -8,6 +8,7 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
 
@@ -27,8 +28,8 @@ public class CurrencyConversion{
 	 */
 	public CurrencyConversion(Context con) {
 		super();
-		try {
-			
+		
+		try {			
 				/** Handling XML */
 				SAXParserFactory spf = SAXParserFactory.newInstance();
 				SAXParser saxparser = spf.newSAXParser();
@@ -37,12 +38,11 @@ public class CurrencyConversion{
 				/** Send URL to parse XML Tags */
 				URL sourceUrl = null;
 				sourceUrl = new URL("http://themoneyconverter.com/rss-feed/USD/rss.xml");
-											
+								
 				/** Create handler to handle XML Tags ( extends DefaultHandler ) */
 				XMLHandler myHandler = new XMLHandler();
 				xmlreader.setContentHandler(myHandler);
 				xmlreader.parse(new InputSource(sourceUrl.openStream()));
-				
 			} catch (Exception e) {
 				Log.d(TAG, "XML Pasing Excpetion = " + e);
 			}
@@ -83,8 +83,8 @@ public class CurrencyConversion{
 		Log.d(TAG,"Currency convert()");//DBG
 		double result = 0d;
 		
-		//USD is not in feed, added to currency_array,
-		//this is nessecary to sync with datalist arrays
+		//USD is not in feed, but is in currency_array,
+		//this is necessary to get correct data from datalist arrays
 		if(from > 57)
 			--from;
 		else if(to > 57)

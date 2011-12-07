@@ -6,5 +6,6 @@
     <color name="converter_red">#FF0000</color>
     <color name="converter_plum">#DDA0DD</color>
     <color name="converter_text">#000000</color>
+    <color name="clear">#00000000</color>
     
 </resources>

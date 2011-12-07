@@ -4,10 +4,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.Vibrator;
 import android.text.InputType;
 import android.util.Log;
@@ -22,6 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -37,13 +41,12 @@ import android.widget.Toast;
  * 2: http://stackoverflow.com/questions/2586301/set-inputtype-for-an-edittext
  * 3: http://www.kaloer.com/android-preferences
  * 4: http://stackoverflow.com/questions/1397361/how-do-i-restart-an-android-activity
+ * 5: http://www.helloandroid.com/tutorials/using-threads-and-progressdialog
  * 
  * TODO change input type of temp, need to allow neg values
- * TODO	fix grey theme
- * TODO	add more themes
  * TODO	change theme list preference to a dialog with custom color buttons
  */
-public class ConverterActivity extends Activity implements OnClickListener{
+public class ConverterActivity extends Activity implements OnClickListener {
 	
 	private static final String TAG = "Converter";//DBG
 	
@@ -53,8 +56,8 @@ public class ConverterActivity extends Activity implements OnClickListener{
 	private Spinner oldVal, newVal;
 	private int intOldSpnVal, intNewSpnVal;
 	private int unit = 0;
-	
-	
+	private DataList datalist = null;
+	private ProgressDialog pd;
 	
 	//instead of a seperate object per class
 	//i'll use this since all classes inherit Object AKAIK
@@ -168,6 +171,7 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			 
 		 case 4:
 			 setTitle("Currency Converter");
+		
 			 adapter = ArrayAdapter.createFromResource(this, 
 					 R.array.currency_array, R.layout.my_spinner_item);
 			 
@@ -175,7 +179,20 @@ public class ConverterActivity extends Activity implements OnClickListener{
 			 
 			 startValue.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 			 
-			 obj = new CurrencyConversion(this);
+			 //make labels specific to this conversion visible
+			 View v = findViewById(R.id.lblRate);
+			 v.setVisibility(0);
+			 v = findViewById(R.id.lblLink);
+			 v.setVisibility(0);						 
+			 currencyLoader();
+			 if(datalist != null){
+				 //work around for USD
+				 int index = (intNewSpnVal > 57)?intNewSpnVal:intNewSpnVal+1;
+					
+				 //show rate in label
+				 TextView tv = (TextView)findViewById(R.id.lblRate);
+				 tv.setText(" Exchange rate: "+datalist.getRates().get(index));
+			 }
 			 break;
 		 default:
 			 setTitle("Converter");
@@ -319,16 +336,16 @@ public class ConverterActivity extends Activity implements OnClickListener{
 					SoundPlayer.play(this, R.raw.answer);
 				}
 				break;
-			case 4://Currency
-				String[] currencyArray = res.getStringArray(R.array.currency_array);
-				DataList datalist = XMLHandler.getDataList();
+			case 4://Currency		
 				//cast object and call specific converter
 				//round value and set text
 				result = Math.round(
 						((CurrencyConversion) obj).convert(intOldSpnVal, intNewSpnVal,
 						Double.valueOf(startValue.getText().toString())) * r)/r;
+				
 				//work around for USD
 				int index = (intNewSpnVal > 57)?intNewSpnVal:intNewSpnVal+1;
+				
 				resultValue.setText(String.valueOf(result)
 						 + " " + datalist.getDescription().get(index));
 			
@@ -379,8 +396,17 @@ public class ConverterActivity extends Activity implements OnClickListener{
 				if(parent.getId() == R.id.spnFrom)
 					intOldSpnVal = pos;
 			
-				else if(parent.getId() == R.id.spnTo)
+				else if(parent.getId() == R.id.spnTo){
 					intNewSpnVal = pos;
+					if(datalist != null){
+						 //work around for USD
+						 int index = (intNewSpnVal > 57)?intNewSpnVal:intNewSpnVal+1;
+							
+						 //show rate in label
+						 TextView tv = (TextView)findViewById(R.id.lblRate);
+						 tv.setText(" Exchange rate: "+datalist.getRates().get(index));
+					 }
+				}
 				break;
 			default:
 				//TODO send error
@@ -426,5 +452,39 @@ public class ConverterActivity extends Activity implements OnClickListener{
 		}
 		super.onResume();
 	}
+	
+	//start progress dialog and new thread
+	//run conversion in seperate thread
+	private void currencyLoader(){
+		pd = ProgressDialog.show(this, "", "Loading exchange rate data...", true,
+                false);
+
+		new Thread(new Runnable(){
+			public void run() {								
+				// TODO Auto-generated method stub
+				obj = new CurrencyConversion(getBaseContext());
+				handler.sendEmptyMessage(0);
+			}														
+		}).start();				
+	}
+	
+	//handle thread callbacks
+	private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+        	datalist = XMLHandler.getDataList();
+        	//if we don't set rate label here as well
+        	//rate wont show when activity starts(due to the threading)
+        	if(datalist != null){
+	   			 //work around for USD
+	   			 int index = (intNewSpnVal > 57)?intNewSpnVal:intNewSpnVal+1;
+	   				
+	   			 //show rate in label
+	   			 TextView tv = (TextView)findViewById(R.id.lblRate);
+	   			 tv.setText(" Exchange rate: "+datalist.getRates().get(index));
+   		 	}
+            pd.dismiss();
+        }
+	};
 }
 

@@ -27,30 +27,39 @@ public class UnitList extends ListActivity {
 	
 	private static final String TAG = "Converter";//DBG
 	
+	//private LayoutInflater mInflater;
+	private int resColor;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	Log.d(TAG,"UnitList: onCreate()");//DBG
+        resColor = 0;
         
     	//get the theme to set
     	 switch(Settings.getCustomTheme(getBaseContext())){
     	 case 0:
 			 setTheme(R.style.grey);
+			 resColor = R.color.converter_grey;
 			 break;
 		 case 1:
 			 setTheme(android.R.style.Theme_Black);
+			 resColor = android.R.color.black;
 			 break;
 		 case 2:
 			 setTheme(R.style.blue);
+			 resColor = R.color.converter_blue;
 			 break;
 		 case 3:
 			 setTheme(R.style.red);
+			 resColor = R.color.converter_red;
 			 break;
 		 case 4:
 			 setTheme(R.style.plum);
+			 resColor = R.color.converter_plum;
 			 break;
 		 case 5:
 			 setTheme(android.R.style.Theme_Light);
+			 resColor = android.R.color.white;
 			 break;
 		 }
         super.onCreate(savedInstanceState);
@@ -62,9 +71,10 @@ public class UnitList extends ListActivity {
         
        
         ListView list = getListView();
-       // ColorDrawable draw = new ColorDrawable(this.getResources().getColor(R.color.converter_background));
-       // list.setBackgroundDrawable(draw);
-        
+        //ColorDrawable draw = new ColorDrawable(this.getResources().getColor(resColor));
+        list.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+        list.setCacheColorHint(R.color.clear);
+       // list.setBackgroundResource(R.drawable.list_selector);
         list.setTextFilterEnabled(true);
         
         //create click listener for array items
@@ -128,4 +138,34 @@ public class UnitList extends ListActivity {
 		}
 		super.onResume();
 	}
+	
+	 /**
+     * Make a view to hold each row.
+     *
+     * @see android.widget.ListAdapter#getView(int, android.view.View,
+     *      android.view.ViewGroup)
+     */
+//    public View getView(int position, View convertView, ViewGroup parent) {
+//        TextView tx;
+//        // When convertView is not null, we can reuse it directly, there is no need
+//        // to reinflate it. We only inflate a new View when the convertView supplied
+//        // by ListView is null.
+//        if (convertView == null) {
+//            convertView = mInflater.inflate(R.layout.list_item, null);
+//
+//            // Creates a ViewHolder and store references to the two children views
+//            // we want to bind data to.
+//            tx = (TextView) convertView.findViewById(R.id.listItem);
+//            tx.setBackgroundColor(getResources().getColor(resColor));
+//            convertView.setTag(tx);
+//        } else {
+//            // Get the ViewHolder back to get fast access to the TextView
+//            // and the ImageView.
+//            tx = (TextView) convertView.getTag();
+//            tx.setBackgroundColor(getResources().getColor(resColor));
+//        }
+//
+//        return convertView;
+//    }
+
 }
