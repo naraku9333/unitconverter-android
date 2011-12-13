@@ -39,13 +39,26 @@ public class Settings<SharedPreference> extends PreferenceActivity implements On
 		
 		//find preference and set on click listener
 		Preference themePref = findPreference("change_theme");
+		Preference themePref2 = findPreference("color_dialog");
 		themePref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			 
-            public boolean onPreferenceClick(Preference preference) {
+            public boolean onPreferenceClick(Preference preference) {        
             	//if clicked theme likely changed, set refreshs true 
-            	unit_refresh = converter_refresh = true;
+            	unit_refresh = true;
+            	converter_refresh = true;
                 return false;
             }
+		});
+		themePref2.setOnPreferenceClickListener(new OnPreferenceClickListener(){
+
+				@Override
+				public boolean onPreferenceClick(Preference arg0) {
+					// TODO Auto-generated method stub
+					ThemeDialog dialog = new ThemeDialog(Settings.this);
+					dialog.show();
+					return false;
+					
+	            }
 		});
 	}
 	

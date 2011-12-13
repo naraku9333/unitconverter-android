@@ -22,6 +22,7 @@
 		</activity>
 		<activity android:name=".Settings"
 			android:label="settings_label">
-		</activity>  
+		</activity> 
+		<activity android:name=".ThemeDialog"></activity> 
 	</application>
 </manifest>

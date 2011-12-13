@@ -8,6 +8,7 @@
     	<item>Kitchen Volume</item>
     	<item>Distance</item>
     	<item>Currency</item>
+    	<item>Area</item>
     </string-array>
 
 <!-- Vibrate setting arrays -->
@@ -204,6 +205,34 @@
         <item> XCD - East Caribbean Dollar</item>
         <item> XOF - West African CFA franc</item>
         <item> ZAR - South African Rand</item>
+    </string-array>
+    
+    <string-array name="area_array">
+        <item>Acre</item>
+        <item>Square Inch</item>
+        <item>Square Foot</item>
+        <item>Square Yard</item>
+        <item>Square Mile</item>
+        <item>Square Millimeter</item>
+        <item>Square Centimeter</item>
+        <item>Square Meter</item>
+        <item>Square Kilometer</item>
+        <item>Are</item>
+        <item>Hectare</item>
+    </string-array>
+    
+    <string-array name="area_units">
+        <item>Acres</item>
+        <item>sq in</item>
+        <item>sq ft</item>
+        <item>sq yd</item>
+        <item>sq mile</item>
+        <item>sq mm</item>
+        <item>sq cm</item>
+        <item>sq m</item>
+        <item>sq km</item>
+        <item>Ares</item>
+        <item>Hectares</item>
     </string-array>
 </resources>
 

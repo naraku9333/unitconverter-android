@@ -4,41 +4,47 @@
 	  android:layout_width="match_parent"
 	  android:layout_height="match_parent"
 	  android:padding="10dip">
+	  
     <TextView android:id="@+id/lblColor"
         android:text="Choose Color"/>
+    
     <TableRow android:id="@+id/trowDialog1">
+        
         <Button android:id="@+id/btn_grey"
             android:background="@color/converter_grey"
             android:height="30dp"
-            android:width="30dp"></Button>
+            android:width="30dp"/>
         
         <Button android:id="@+id/btn_black"
             android:background="@android:color/black"
             android:height="30dp"
-            android:width="30dp"></Button>
+            android:width="30dp"/>
         
         <Button android:id="@+id/btn_blue"
             android:background="@color/converter_blue"
             android:height="30dp"
-            android:width="30dp"></Button>
+            android:width="30dp"/>
             
     </TableRow>
+    
     <TableRow android:id="@+id/trowDialog1">
+        
         <Button android:id="@+id/btn_red"
             android:background="@color/converter_red"
             android:height="30dp"
-            android:width="30dp"></Button>
+            android:width="30dp"/>
         
         <Button android:id="@+id/btn_plum"
             android:background="@color/converter_plum"
             android:height="30dp"
-            android:width="30dp"></Button>
+            android:width="30dp"/>
         
         <Button android:id="@+id/btn_white"
             android:background="@android:color/white"
             android:height="30dp"
-            android:width="30dp"></Button>
+            android:width="30dp"/>
         
     </TableRow>
+    
 </LinearLayout>
     

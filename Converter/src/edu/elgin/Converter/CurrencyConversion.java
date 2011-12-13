@@ -8,7 +8,6 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
 
@@ -46,27 +45,27 @@ public class CurrencyConversion{
 			} catch (Exception e) {
 				Log.d(TAG, "XML Pasing Excpetion = " + e);
 			}
-		finally{//if stream fails load from resource
-			if(datalist == null){
-				try{
-					/** Handling XML */
-					SAXParserFactory spf = SAXParserFactory.newInstance();
-					SAXParser saxparser = spf.newSAXParser();
-					XMLReader xmlreader = saxparser.getXMLReader();
-					
-					/** Create handler to handle XML Tags ( extends DefaultHandler ) */
-					XMLHandler myHandler = new XMLHandler();
-					xmlreader.setContentHandler(myHandler);
-					
-					//read from resource//dbg
-					InputSource is = new InputSource(con.getResources().openRawResource(R.raw.rss));//dbg
-					xmlreader.parse(is);
-				}
-				catch(Exception nex){
-					Log.d(TAG, " Excpetion = " + nex);
-				}
-			}
-		}
+//		finally{//if stream fails load from resource
+//			if(datalist == null){
+//				try{
+//					/** Handling XML */
+//					SAXParserFactory spf = SAXParserFactory.newInstance();
+//					SAXParser saxparser = spf.newSAXParser();
+//					XMLReader xmlreader = saxparser.getXMLReader();
+//					
+//					/** Create handler to handle XML Tags ( extends DefaultHandler ) */
+//					XMLHandler myHandler = new XMLHandler();
+//					xmlreader.setContentHandler(myHandler);
+//					
+//					//read from resource//dbg
+//					InputSource is = new InputSource(con.getResources().openRawResource(R.raw.rss));//dbg
+//					xmlreader.parse(is);
+//				}
+//				catch(Exception nex){
+//					Log.d(TAG, " Excpetion = " + nex);
+//				}
+//			}
+//		}
 		//get list of feed data
 		datalist = XMLHandler.getDataList();			
 	}

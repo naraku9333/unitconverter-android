@@ -9,6 +9,8 @@ package edu.elgin.Converter;
 
 public final class R {
     public static final class array {
+        public static final int area_array=0x7f06000c;
+        public static final int area_units=0x7f06000d;
         public static final int base_array=0x7f06000a;
         public static final int bgcolor_text=0x7f060006;
         /**  Theme selector arrays 
@@ -50,15 +52,15 @@ public final class R {
     public static final class id {
         public static final int about_box=0x7f0b0000;
         public static final int btnConvert=0x7f0b000a;
-        public static final int btn_black=0x7f0b0017;
-        public static final int btn_blue=0x7f0b0018;
-        public static final int btn_grey=0x7f0b0016;
-        public static final int btn_plum=0x7f0b001a;
-        public static final int btn_red=0x7f0b0019;
-        public static final int btn_white=0x7f0b001b;
+        public static final int btn_black=0x7f0b0018;
+        public static final int btn_blue=0x7f0b0019;
+        public static final int btn_grey=0x7f0b0017;
+        public static final int btn_plum=0x7f0b001b;
+        public static final int btn_red=0x7f0b001a;
+        public static final int btn_white=0x7f0b001c;
         public static final int edtResult=0x7f0b000c;
         public static final int edtStartValue=0x7f0b0003;
-        public static final int lblColor=0x7f0b0014;
+        public static final int lblColor=0x7f0b0015;
         public static final int lblConvert=0x7f0b0002;
         public static final int lblFrom=0x7f0b0004;
         public static final int lblLink=0x7f0b000d;
@@ -66,7 +68,7 @@ public final class R {
         public static final int lblResult=0x7f0b000b;
         public static final int lblTo=0x7f0b0006;
         public static final int listItem=0x7f0b0013;
-        public static final int settings=0x7f0b001c;
+        public static final int settings=0x7f0b001d;
         public static final int spnFrom=0x7f0b0005;
         public static final int spnTo=0x7f0b0007;
         public static final int tableRow1=0x7f0b000e;
@@ -75,8 +77,9 @@ public final class R {
         public static final int tableRow4=0x7f0b0011;
         public static final int tableRow5=0x7f0b0012;
         public static final int tblStartVal=0x7f0b0001;
+        public static final int textView1=0x7f0b0014;
         public static final int trow=0x7f0b0008;
-        public static final int trowDialog1=0x7f0b0015;
+        public static final int trowDialog1=0x7f0b0016;
     }
     public static final class layout {
         public static final int about=0x7f030000;
@@ -85,7 +88,8 @@ public final class R {
         public static final int main=0x7f030003;
         public static final int my_spinner_dropdown_item=0x7f030004;
         public static final int my_spinner_item=0x7f030005;
-        public static final int theme_dialog=0x7f030006;
+        public static final int test=0x7f030006;
+        public static final int theme_dialog=0x7f030007;
     }
     public static final class menu {
         public static final int menu=0x7f0a0000;

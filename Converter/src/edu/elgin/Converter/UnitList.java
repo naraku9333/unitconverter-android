@@ -72,8 +72,8 @@ public class UnitList extends ListActivity {
        
         ListView list = getListView();
         //ColorDrawable draw = new ColorDrawable(this.getResources().getColor(resColor));
-        list.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-        list.setCacheColorHint(R.color.clear);
+       // list.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+        //list.setCacheColorHint(R.color.clear);
        // list.setBackgroundResource(R.drawable.list_selector);
         list.setTextFilterEnabled(true);
         

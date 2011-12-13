@@ -194,6 +194,17 @@ public class ConverterActivity extends Activity implements OnClickListener {
 				 tv.setText(" Exchange rate: "+datalist.getRates().get(index));
 			 }
 			 break;
+		 case 5:
+			 setTitle("Area Converter");
+			 adapter = ArrayAdapter.createFromResource(this, 
+					 R.array.area_array, R.layout.my_spinner_item);
+			 
+			 adapter.setDropDownViewResource(R.layout.my_spinner_dropdown_item);
+			 
+			 startValue.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+			 
+			 obj = new AreaConversion();
+			 break;
 		 default:
 			 setTitle("Converter");
 			  adapter = ArrayAdapter.createFromResource(this, 
@@ -356,6 +367,23 @@ public class ConverterActivity extends Activity implements OnClickListener {
 					SoundPlayer.play(this, R.raw.answer);
 				}
 				break;
+			case 5://Area
+				start = Double.valueOf(startValue.getText().toString());
+				
+				String[] areaArray= res.getStringArray(R.array.area_units);
+				
+				result = ((AreaConversion) obj).convert(intOldSpnVal, intNewSpnVal, start);
+				
+				resultValue.setText(String.valueOf(Math.round(result * r)/r) + " " 
+						+ areaArray[intNewSpnVal]);
+				
+				if(Settings.getVibrate(getBaseContext())){
+					v.vibrate(Settings.getVibrateInterval(getBaseContext()));
+				}
+				if(Settings.getSound(getBaseContext())){
+					SoundPlayer.play(this, R.raw.answer);
+				}
+				break;
 			default:
 				//TODO send error
 				break;
@@ -392,6 +420,12 @@ public class ConverterActivity extends Activity implements OnClickListener {
 			case 1://Temperature Converter
 			case 2://Kitchen Volume Converter
 			case 3://Distance Converter
+				if(parent.getId() == R.id.spnFrom)
+					intOldSpnVal = pos;
+			
+				else if(parent.getId() == R.id.spnTo)
+					intNewSpnVal = pos;
+				break;
 			case 4://Currency Converter
 				if(parent.getId() == R.id.spnFrom)
 					intOldSpnVal = pos;
@@ -407,6 +441,13 @@ public class ConverterActivity extends Activity implements OnClickListener {
 						 tv.setText(" Exchange rate: "+datalist.getRates().get(index));
 					 }
 				}
+				break;
+			case 5://Area
+				if(parent.getId() == R.id.spnFrom)
+					intOldSpnVal = pos;
+			
+				else if(parent.getId() == R.id.spnTo)
+					intNewSpnVal = pos;
 				break;
 			default:
 				//TODO send error
