@@ -79,8 +79,8 @@ public class Settings<SharedPreference> extends PreferenceActivity implements On
 		return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context)
 				.getString("change_theme", "0"));
 	}
-	public static double getDigits(Context context){
-		return Double.parseDouble(PreferenceManager.getDefaultSharedPreferences(context)
+	public static int getDigits(Context context){
+		return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context)
 				.getString("digits", "100"));
 	}
 		

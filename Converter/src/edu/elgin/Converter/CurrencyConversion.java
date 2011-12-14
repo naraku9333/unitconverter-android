@@ -42,6 +42,7 @@ public class CurrencyConversion{
 				XMLHandler myHandler = new XMLHandler();
 				xmlreader.setContentHandler(myHandler);
 				xmlreader.parse(new InputSource(sourceUrl.openStream()));
+				//xmlreader.parse(new InputSource(con.getResources().openRawResource(R.raw.rss)));
 			} catch (Exception e) {
 				Log.d(TAG, "XML Pasing Excpetion = " + e);
 			}
@@ -59,7 +60,7 @@ public class CurrencyConversion{
 //					
 //					//read from resource//dbg
 //					InputSource is = new InputSource(con.getResources().openRawResource(R.raw.rss));//dbg
-//					xmlreader.parse(is);
+//					xmlreader.parse(new InputSource(con.getResources().openRawResource(R.raw.rss)));
 //				}
 //				catch(Exception nex){
 //					Log.d(TAG, " Excpetion = " + nex);

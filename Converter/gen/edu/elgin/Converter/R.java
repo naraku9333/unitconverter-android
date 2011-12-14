@@ -17,6 +17,8 @@ public final class R {
          */
         public static final int bgcolor_vals=0x7f060005;
         public static final int currency_array=0x7f06000b;
+        public static final int density_array=0x7f06000e;
+        public static final int density_units=0x7f06000f;
         /**  Digit setting arrays 
          */
         public static final int digits_nums=0x7f060003;

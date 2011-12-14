@@ -9,6 +9,7 @@
     	<item>Distance</item>
     	<item>Currency</item>
     	<item>Area</item>
+    	<item>Density</item>
     </string-array>
 
 <!-- Vibrate setting arrays -->
@@ -234,6 +235,45 @@
         <item>Ares</item>
         <item>Hectares</item>
     </string-array>
+    
+    <string-array name="density_array">
+        <item>Gram/Cubic Centimeter</item>
+        <item>Gram/Cubic Meter</item>
+        <item>Gram/Liter</item>
+        <item>Kilogram/Cubic Centimeter</item>
+        <item>Kilogram/Cubic Meter</item>
+        <item>Kilogram/Liter</item>
+        <item>Ounce/Cubic Inch</item>
+        <item>Ounce/Cubic Foot</item>
+        <item>Ounce/Cubic Yard</item>
+        <item>Ounce/Gallon UK</item>
+        <item>Ounce/Gallon US</item>
+        <item>Pound/Cubic Inch</item>
+        <item>Pound/Cubic Foot</item>
+        <item>Pound/Cubic Yard</item>
+        <item>Pound/Gallon UK</item>
+        <item>Pound/Gallon US</item>
+    </string-array>
+    
+    <string-array name="density_units">
+        <item>g/cm3</item>
+        <item>g/m3</item>
+        <item>g/L</item>
+        <item>Kg/cm3</item>
+        <item>Kg/m3</item>
+        <item>Kg/L</item>
+        <item>oz/in3</item>
+        <item>oz/ft3</item>
+        <item>oz/yd3</item>
+        <item>oz/gal UK</item>
+        <item>oz/gal US</item>
+        <item>lb/in3</item>
+        <item>lb/ft3</item>
+        <item>lb/yd3</item>
+        <item>lb/gal UK</item>
+        <item>lb/gal US</item>
+    </string-array>
+    
 </resources>
 
 

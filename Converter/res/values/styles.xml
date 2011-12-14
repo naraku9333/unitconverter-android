@@ -3,18 +3,22 @@
 <!--     Theme styles -->
 	<style name="grey" parent="@android:style/Theme.Light">
         <item name="android:windowBackground">@color/converter_grey</item>
+        <item name="android:colorBackgroundCacheHint">@color/converter_grey</item>
     </style>
     
 	<style name="blue" parent="@android:style/Theme.Light">
         <item name="android:windowBackground">@color/converter_blue</item>
+        <item name="android:colorBackgroundCacheHint">@color/converter_blue</item>
     </style>
     
 	<style name="red" parent="@android:style/Theme.Light">
         <item name="android:windowBackground">@color/converter_red</item>
+        <item name="android:colorBackgroundCacheHint">@color/converter_red</item>
     </style>
     
 	<style name="plum" parent="@android:style/Theme.Light">
         <item name="android:windowBackground">@color/converter_plum</item>
+        <item name="android:colorBackgroundCacheHint">@color/converter_plum</item>
     </style>
     
 	<style name="lite" parent="@android:style/Theme.Light"></style>

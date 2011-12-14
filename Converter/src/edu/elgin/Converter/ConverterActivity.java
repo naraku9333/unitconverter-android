@@ -171,7 +171,8 @@ public class ConverterActivity extends Activity implements OnClickListener {
 			 
 		 case 4:
 			 setTitle("Currency Converter");
-		
+			//load currencies
+			 currencyLoader();
 			 adapter = ArrayAdapter.createFromResource(this, 
 					 R.array.currency_array, R.layout.my_spinner_item);
 			 
@@ -183,8 +184,8 @@ public class ConverterActivity extends Activity implements OnClickListener {
 			 View v = findViewById(R.id.lblRate);
 			 v.setVisibility(0);
 			 v = findViewById(R.id.lblLink);
-			 v.setVisibility(0);						 
-			 currencyLoader();
+			 v.setVisibility(0);
+			 
 			 if(datalist != null){
 				 //work around for USD
 				 int index = (intNewSpnVal > 57)?intNewSpnVal:intNewSpnVal+1;
@@ -204,6 +205,17 @@ public class ConverterActivity extends Activity implements OnClickListener {
 			 startValue.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 			 
 			 obj = new AreaConversion();
+			 break;
+		 case 6:
+			 setTitle("Density Converter");
+			 adapter = ArrayAdapter.createFromResource(this, 
+					 R.array.density_array, R.layout.my_spinner_item);
+			 
+			 adapter.setDropDownViewResource(R.layout.my_spinner_dropdown_item);
+			 
+			 startValue.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+			 
+			 obj = new DensityConversion();
 			 break;
 		 default:
 			 setTitle("Converter");
@@ -372,10 +384,12 @@ public class ConverterActivity extends Activity implements OnClickListener {
 				
 				String[] areaArray= res.getStringArray(R.array.area_units);
 				
-				result = ((AreaConversion) obj).convert(intOldSpnVal, intNewSpnVal, start);
+				resultValue.setText(
+						((AreaConversion) obj).convert(intOldSpnVal, intNewSpnVal, start, getBaseContext())
+						+ " " + areaArray[intNewSpnVal]);
 				
-				resultValue.setText(String.valueOf(Math.round(result * r)/r) + " " 
-						+ areaArray[intNewSpnVal]);
+//				resultValue.setText(String.valueOf(Math.round(result * r)/r) + " " 
+//						+ areaArray[intNewSpnVal]);
 				
 				if(Settings.getVibrate(getBaseContext())){
 					v.vibrate(Settings.getVibrateInterval(getBaseContext()));
@@ -384,10 +398,25 @@ public class ConverterActivity extends Activity implements OnClickListener {
 					SoundPlayer.play(this, R.raw.answer);
 				}
 				break;
+			case 6://Density
+				start = Double.valueOf(startValue.getText().toString());
+				
+				String[] densityArray= res.getStringArray(R.array.density_units);
+				
+				resultValue.setText(
+						((DensityConversion) obj).convert(intOldSpnVal, intNewSpnVal, start, getBaseContext())
+						+ " " + densityArray[intNewSpnVal]);				
+				
+				if(Settings.getVibrate(getBaseContext())){
+					v.vibrate(Settings.getVibrateInterval(getBaseContext()));
+				}
+				if(Settings.getSound(getBaseContext())){
+					SoundPlayer.play(this, R.raw.answer);
+				}
+				break;	
 			default:
 				//TODO send error
-				break;
-			
+				break;			
 			}
 		}
 	}
@@ -443,6 +472,7 @@ public class ConverterActivity extends Activity implements OnClickListener {
 				}
 				break;
 			case 5://Area
+			case 6://Density
 				if(parent.getId() == R.id.spnFrom)
 					intOldSpnVal = pos;
 			
