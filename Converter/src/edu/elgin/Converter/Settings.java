@@ -48,19 +48,21 @@ public class Settings<SharedPreference> extends PreferenceActivity implements On
             	converter_refresh = true;
                 return false;
             }
-		});
-		themePref2.setOnPreferenceClickListener(new OnPreferenceClickListener(){
-
-				@Override
-				public boolean onPreferenceClick(Preference arg0) {
+		});}
+		//themePref2.setOnPreferenceClickListener(new OnPreferenceClickListener(){
+//
+//				@Override
+//				public boolean onPreferenceClick(Preference arg0) {
 					// TODO Auto-generated method stub
-					ThemeDialog dialog = new ThemeDialog(Settings.this);
-					dialog.show();
-					return false;
-					
-	            }
-		});
-	}
+					//ThemeDialog dialog = new ThemeDialog(Settings.this, );
+					//dialog.show();
+//					Intent i = new Intent(Settings.this,testclass.class);
+//					startActivity(i);
+//					return false;
+//					
+//	            }
+//		});
+//	}
 	
 	//getter setter methods
 	public static boolean getVibrate(Context context){
@@ -78,6 +80,9 @@ public class Settings<SharedPreference> extends PreferenceActivity implements On
 	public static int getCustomTheme(Context context){
 		return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context)
 				.getString("change_theme", "0"));
+	}
+	public static void setCustomTheme(int theme){
+		
 	}
 	public static int getDigits(Context context){
 		return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context)

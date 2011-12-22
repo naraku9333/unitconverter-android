@@ -4,46 +4,61 @@
 	  android:layout_width="match_parent"
 	  android:layout_height="match_parent"
 	  android:padding="10dip">
-	  
-    <TextView android:id="@+id/lblColor"
-        android:text="Choose Color"/>
-    
-    <TableRow android:id="@+id/trowDialog1">
-        
-        <Button android:id="@+id/btn_grey"
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btn_grey"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="@color/converter_grey"
-            android:height="30dp"
-            android:width="30dp"/>
-        
-        <Button android:id="@+id/btn_black"
-            android:background="@android:color/black"
-            android:height="30dp"
-            android:width="30dp"/>
-        
-        <Button android:id="@+id/btn_blue"
+            android:text="Grey" />
+
+        <Button
+            android:id="@+id/btn_black"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="Black" 
+            android:background="@android:color/black"/>
+
+        <Button
+            android:id="@+id/btn_blue"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="@color/converter_blue"
-            android:height="30dp"
-            android:width="30dp"/>
-            
+            android:text="Blue" />
+
     </TableRow>
-    
-    <TableRow android:id="@+id/trowDialog1">
-        
-        <Button android:id="@+id/btn_red"
+
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btn_red"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="@color/converter_red"
-            android:height="30dp"
-            android:width="30dp"/>
-        
-        <Button android:id="@+id/btn_plum"
+            android:text="Red" />
+
+        <Button
+            android:id="@+id/btn_plum"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="@color/converter_plum"
-            android:height="30dp"
-            android:width="30dp"/>
-        
-        <Button android:id="@+id/btn_white"
-            android:background="@android:color/white"
-            android:height="30dp"
-            android:width="30dp"/>
-        
+             />
+
+        <Button
+            android:id="@+id/btn_white"           
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="White" 
+            android:background="@android:color/white"/>
+
     </TableRow>
     
 </LinearLayout>

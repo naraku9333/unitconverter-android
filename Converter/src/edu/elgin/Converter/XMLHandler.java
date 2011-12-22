@@ -39,7 +39,7 @@ public class XMLHandler extends DefaultHandler {
 	@Override
 	public void startElement(String uri, String localName, String qName,
 			Attributes attributes) throws SAXException {
-		Log.d(TAG,"XMLHandler startElement, localName = "+localName);
+		//Log.d(TAG,"XMLHandler startElement, localName = "+localName);
 		
 		//first tag in feed
 		//instantiate list

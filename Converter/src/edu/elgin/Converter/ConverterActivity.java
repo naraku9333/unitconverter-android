@@ -188,11 +188,15 @@ public class ConverterActivity extends Activity implements OnClickListener {
 			 
 			 if(datalist != null){
 				 //work around for USD
-				 int index = (intNewSpnVal > 57)?intNewSpnVal:intNewSpnVal+1;
-					
+				 int indexOld = (intOldSpnVal > 57)?intOldSpnVal:intOldSpnVal+1;
+				 int indexNew = (intNewSpnVal > 57)?intNewSpnVal:intNewSpnVal+1;
+				 
+				 //display exchange rate which is rate to / rate from
+				 double rateTo = Double.valueOf(datalist.getRates().get(indexNew)),
+						 rateFrom = Double.valueOf(datalist.getRates().get(indexOld));
 				 //show rate in label
 				 TextView tv = (TextView)findViewById(R.id.lblRate);
-				 tv.setText(" Exchange rate: "+datalist.getRates().get(index));
+				 tv.setText(" Exchange rate: "+ String.valueOf(Math.round((rateTo/rateFrom) * 5)/5));
 			 }
 			 break;
 		 case 5:

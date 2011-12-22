@@ -60,16 +60,16 @@ public final class R {
         public static final int btn_plum=0x7f0b001b;
         public static final int btn_red=0x7f0b001a;
         public static final int btn_white=0x7f0b001c;
+        public static final int button1=0x7f0b0016;
         public static final int edtResult=0x7f0b000c;
         public static final int edtStartValue=0x7f0b0003;
-        public static final int lblColor=0x7f0b0015;
         public static final int lblConvert=0x7f0b0002;
         public static final int lblFrom=0x7f0b0004;
         public static final int lblLink=0x7f0b000d;
         public static final int lblRate=0x7f0b0009;
         public static final int lblResult=0x7f0b000b;
         public static final int lblTo=0x7f0b0006;
-        public static final int listItem=0x7f0b0013;
+        public static final int listItem=0x7f0b0014;
         public static final int settings=0x7f0b001d;
         public static final int spnFrom=0x7f0b0005;
         public static final int spnTo=0x7f0b0007;
@@ -78,10 +78,10 @@ public final class R {
         public static final int tableRow3=0x7f0b0010;
         public static final int tableRow4=0x7f0b0011;
         public static final int tableRow5=0x7f0b0012;
+        public static final int tableRow6=0x7f0b0013;
         public static final int tblStartVal=0x7f0b0001;
-        public static final int textView1=0x7f0b0014;
+        public static final int textView1=0x7f0b0015;
         public static final int trow=0x7f0b0008;
-        public static final int trowDialog1=0x7f0b0016;
     }
     public static final class layout {
         public static final int about=0x7f030000;

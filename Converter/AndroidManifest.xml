@@ -24,5 +24,7 @@
 			android:label="settings_label">
 		</activity> 
 		<activity android:name=".ThemeDialog"></activity> 
+		<activity android:name=".testclass"
+		    android:theme="@android:style/Theme.Dialog"></activity>
 	</application>
 </manifest>
