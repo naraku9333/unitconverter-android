@@ -15,7 +15,7 @@ import android.util.Log;
  * Currency conversion
  * Downloads a rate file with respect to USD
  * and populates datalist of the rates using XMLHandler class
- * @author Sean Vogel 
+ * @author Sean Vogel
  * Dec 5, 2011
  * updated Dec 22, 2011
  * ref:
@@ -27,6 +27,7 @@ public class CurrencyConversion{
 	
 	private DataList datalist = null;
 	private final long TWELVE_HRS = 43200000;
+	
 	/**
 	 * pull data from feed
 	 */

@@ -82,10 +82,10 @@ public class ThemeDialog extends DialogPreference implements OnClickListener, an
 	@Override
 	public void onClick(View arg) {
 		// TODO Auto-generated method stub
-		int theme = 0;
+		//int theme = 0;
 		switch(arg.getId()){
 		case R.id.btn_grey:
-			theme = R.style.grey;
+			//theme = R.style.grey;
 			break;
 		case R.id.btn_black:
 			

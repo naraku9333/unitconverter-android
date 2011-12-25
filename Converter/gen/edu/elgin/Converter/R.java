@@ -54,13 +54,12 @@ public final class R {
     public static final class id {
         public static final int about_box=0x7f0b0000;
         public static final int btnConvert=0x7f0b000a;
-        public static final int btn_black=0x7f0b0018;
-        public static final int btn_blue=0x7f0b0019;
-        public static final int btn_grey=0x7f0b0017;
-        public static final int btn_plum=0x7f0b001b;
-        public static final int btn_red=0x7f0b001a;
-        public static final int btn_white=0x7f0b001c;
-        public static final int button1=0x7f0b0016;
+        public static final int btn_black=0x7f0b0016;
+        public static final int btn_blue=0x7f0b0017;
+        public static final int btn_grey=0x7f0b0015;
+        public static final int btn_plum=0x7f0b0019;
+        public static final int btn_red=0x7f0b0018;
+        public static final int btn_white=0x7f0b001a;
         public static final int edtResult=0x7f0b000c;
         public static final int edtStartValue=0x7f0b0003;
         public static final int lblConvert=0x7f0b0002;
@@ -70,7 +69,7 @@ public final class R {
         public static final int lblResult=0x7f0b000b;
         public static final int lblTo=0x7f0b0006;
         public static final int listItem=0x7f0b0014;
-        public static final int settings=0x7f0b001d;
+        public static final int settings=0x7f0b001b;
         public static final int spnFrom=0x7f0b0005;
         public static final int spnTo=0x7f0b0007;
         public static final int tableRow1=0x7f0b000e;
@@ -80,7 +79,6 @@ public final class R {
         public static final int tableRow5=0x7f0b0012;
         public static final int tableRow6=0x7f0b0013;
         public static final int tblStartVal=0x7f0b0001;
-        public static final int textView1=0x7f0b0015;
         public static final int trow=0x7f0b0008;
     }
     public static final class layout {
@@ -101,24 +99,32 @@ public final class R {
         public static final int rss=0x7f050001;
     }
     public static final class string {
-        public static final int about_label=0x7f080008;
-        public static final int about_text=0x7f08000a;
-        public static final int about_title=0x7f080009;
-        public static final int app_name=0x7f080001;
-        public static final int base_title=0x7f080004;
-        public static final int digit_title=0x7f080010;
-        public static final int digits=0x7f080011;
-        public static final int hello=0x7f080000;
-        public static final int settings_label=0x7f080006;
-        public static final int settings_title=0x7f080007;
-        public static final int sound=0x7f08000f;
-        public static final int sound_title=0x7f08000e;
-        public static final int spn_from_title=0x7f080002;
-        public static final int spn_to_title=0x7f080003;
-        public static final int temp_title=0x7f080005;
-        public static final int vibrate=0x7f08000b;
-        public static final int vibrate_length=0x7f08000d;
-        public static final int vibrate_title=0x7f08000c;
+        public static final int about_label=0x7f08000f;
+        public static final int about_text=0x7f080011;
+        public static final int about_title=0x7f080010;
+        public static final int app_name=0x7f080008;
+        public static final int base_title=0x7f08000b;
+        public static final int convert_btn=0x7f080004;
+        public static final int convert_lbl=0x7f080000;
+        public static final int digit_title=0x7f080017;
+        public static final int digits=0x7f080018;
+        public static final int exchange_lbl=0x7f080006;
+        public static final int from_lbl=0x7f080001;
+        public static final int hint=0x7f080019;
+        public static final int link_lbl=0x7f080005;
+        public static final int one=0x7f080007;
+        public static final int result_lbl=0x7f080002;
+        public static final int settings_label=0x7f08000d;
+        public static final int settings_title=0x7f08000e;
+        public static final int sound=0x7f080016;
+        public static final int sound_title=0x7f080015;
+        public static final int spn_from_title=0x7f080009;
+        public static final int spn_to_title=0x7f08000a;
+        public static final int temp_title=0x7f08000c;
+        public static final int to_lbl=0x7f080003;
+        public static final int vibrate=0x7f080012;
+        public static final int vibrate_length=0x7f080014;
+        public static final int vibrate_title=0x7f080013;
     }
     public static final class style {
         public static final int blue=0x7f090001;

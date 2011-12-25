@@ -19,7 +19,7 @@
            
             android:layout_gravity="left"
             android:gravity="center_vertical"
-            android:text=" Convert: "
+            android:text="@string/convert_lbl"
             android:textSize="18sp" >
         </TextView>
 
@@ -27,7 +27,8 @@
             android:id="@+id/edtStartValue"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="1" >
+            android:hint="@string/hint"
+            android:text="@string/one" >
         </EditText>
 
     </TableRow>
@@ -37,7 +38,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.06"
-        android:text=" From "
+        android:text="@string/from_lbl"
         android:textSize="18sp" >
     </TextView>
 
@@ -55,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5sp"
         android:layout_weight="0.06"
-        android:text=" To "
+        android:text="@string/to_lbl"
         android:textSize="18sp" >
     </TextView>
 
@@ -81,7 +82,7 @@
             android:layout_weight="0.06"
             android:layout_marginTop="10sp"
             android:gravity="left"
-            android:text=" Exchange rate: "
+            android:text="@string/exchange_lbl"
             android:textSize="15sp"
             android:visibility="invisible" />
 
@@ -89,7 +90,7 @@
             android:id="@+id/btnConvert"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Convert"
+            android:text="@string/convert_btn"
             android:textSize="18sp" >
         </Button>
     </TableRow>
@@ -99,7 +100,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.06"
-        android:text=" Result: "
+        android:text="@string/result_lbl"
         android:textSize="18sp" >
     </TextView>
 
@@ -118,7 +119,7 @@
         android:layout_weight="0.06"
         android:autoLink="web"
         android:linksClickable="true"
-        android:text="*All rates provided by\nhttp://themoneyconverter.com/ see site for the most accurate rates"
+        android:text="@string/link_lbl"
         android:textSize="15sp" 
         android:paddingLeft="10sp"
         android:visibility="invisible" >

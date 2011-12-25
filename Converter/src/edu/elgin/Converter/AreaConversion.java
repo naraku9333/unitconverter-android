@@ -26,7 +26,7 @@ public class AreaConversion {
 	/**
 	 * 
 	 * Sean Dec 12, 2011
-	 * @param oldSpn
+	 * @param oldSpn 
 	 * @param newSpn
 	 * @param startValue
 	 * @return

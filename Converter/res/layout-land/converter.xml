@@ -25,7 +25,7 @@
   		            android:layout_width="fill_parent"
   		            android:layout_height="wrap_content"
   		            android:layout_weight="1"  		        
-  		            android:text="	Convert..."
+  		            android:text="@string/convert_lbl"
   		            android:textSize="16sp" >
   		        </TextView>
 
@@ -35,7 +35,7 @@
   		            android:layout_height="wrap_content"
   		            android:layout_marginLeft="20sp"
   		            android:layout_weight=".3"
-  		            android:text="	From..."
+  		            android:text="@string/from_lbl"
   		            android:textSize="16sp" >
   		        </TextView>
   		    </TableRow>
@@ -52,7 +52,8 @@
   		            android:layout_width="fill_parent"
   		            android:layout_height="wrap_content"
   		            android:layout_weight="1"
-  		            android:text="1" >
+  		            android:hint="@string/hint"
+  		            android:text="@string/one" >
   		        </EditText>
 
   		        <Spinner
@@ -71,14 +72,14 @@
   		        android:id="@+id/tableRow3"
   		        android:layout_width="fill_parent"
   		        android:layout_height="wrap_content"
-  		        android:layout_weight="1" >
+  		        android:layout_weight="@string/one" >
 
   		        <TextView
   		            android:id="@+id/lblResult"
   		            android:layout_width="fill_parent"
   		            android:layout_height="wrap_content"
   		            android:layout_weight="1"
-  		            android:text="	Result..."
+  		            android:text="@string/result_lbl"
   		            android:textSize="16sp" >
   		        </TextView>
 
@@ -88,7 +89,7 @@
   		            android:layout_height="wrap_content"
   		            android:layout_marginLeft="20sp"
   		            android:layout_weight=".3"
-  		            android:text="	To..."
+  		            android:text="@string/to_lbl"
   		            android:textSize="16sp" >
   		        </TextView>
   		    </TableRow>
@@ -138,7 +139,7 @@
   		            android:layout_height="wrap_content"
   		            android:layout_gravity="top"
   		            android:layout_weight="1"
-  		            android:text="Convert" >
+  		            android:text="@string/convert_btn" >
   		        </Button>
   		        
   		    </TableRow>
@@ -156,7 +157,7 @@
   		            android:autoLink="web"
   		            android:linksClickable="true"
   		            android:paddingLeft="10sp"
-  		            android:text="*All rates provided by http://themoneyconverter.com/ \nsee site for the most accurate rates"
+  		            android:text="@string/link_lbl"
   		            android:textSize="15sp"
   		            android:visibility="invisible"
   		            android:layout_weight="1"

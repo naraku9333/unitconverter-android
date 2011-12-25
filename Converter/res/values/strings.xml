@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, ConverterActivity!</string>
+    <string name="convert_lbl">	Convert&#8230;</string>
+    <string name="from_lbl">	From&#8230;</string>
+    <string name="result_lbl">	Result&#8230;</string>
+    <string name="to_lbl">	To&#8230;</string>
+    <string name="convert_btn">Convert</string>
+    <string name="link_lbl">*All rates provided by http://themoneyconverter.com/ \nsee site for the most accurate rates</string>
+    <string name="exchange_lbl"> Exchange rate: </string>
+    <string name="one">1</string>
     <string name="app_name">Multi-Conversion Tool</string>
     <string name="spn_from_title">From</string>
     <string name="spn_to_title">To</string>
@@ -20,4 +27,5 @@
     <string name="sound">Plays a sound when answer is returned</string>
     <string name="digit_title">Decimals</string>
     <string name="digits">Set number of decimal places to display in result</string>
+    <string name="hint">Enter value to convert</string>
 </resources>

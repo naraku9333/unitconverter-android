@@ -9,27 +9,24 @@
         android:id="@+id/tableRow1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-
+
         <Button
             android:id="@+id/btn_grey"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@color/converter_grey"
-            android:text="Grey" />
+            android:background="@color/converter_grey"/>
 
         <Button
             android:id="@+id/btn_black"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:text="Black" 
             android:background="@android:color/black"/>
-
+
         <Button
             android:id="@+id/btn_blue"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@color/converter_blue"
-            android:text="Blue" />
+            android:background="@color/converter_blue"/>
 
     </TableRow>
 
@@ -37,26 +34,23 @@
         android:id="@+id/tableRow2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-
+
         <Button
             android:id="@+id/btn_red"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@color/converter_red"
-            android:text="Red" />
-
+            android:background="@color/converter_red"/>
+
         <Button
             android:id="@+id/btn_plum"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@color/converter_plum"
-             />
+            android:background="@color/converter_plum"/>
 
         <Button
             android:id="@+id/btn_white"           
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:text="White" 
             android:background="@android:color/white"/>
 
     </TableRow>

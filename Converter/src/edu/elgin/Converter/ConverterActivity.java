@@ -1,5 +1,6 @@
 package edu.elgin.Converter;
 
+import java.text.DecimalFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -58,7 +59,7 @@ public class ConverterActivity extends Activity implements OnClickListener {
 	private int unit = 0;
 	private DataList datalist = null;
 	private ProgressDialog pd;
-	
+
 	//instead of a seperate object per class
 	//i'll use this since all classes inherit Object AKAIK
 	private Object obj;
@@ -184,21 +185,9 @@ public class ConverterActivity extends Activity implements OnClickListener {
 			 View v = findViewById(R.id.lblRate);
 			 v.setVisibility(0);
 			 v = findViewById(R.id.lblLink);
-			 v.setVisibility(0);
-			 
-			 if(datalist != null){
-				 //work around for USD
-				 int indexOld = (intOldSpnVal > 57)?intOldSpnVal:intOldSpnVal+1;
-				 int indexNew = (intNewSpnVal > 57)?intNewSpnVal:intNewSpnVal+1;
-				 
-				 //display exchange rate which is rate to / rate from
-				 double rateTo = Double.valueOf(datalist.getRates().get(indexNew)),
-						 rateFrom = Double.valueOf(datalist.getRates().get(indexOld));
-				 //show rate in label
-				 TextView tv = (TextView)findViewById(R.id.lblRate);
-				 tv.setText(" Exchange rate: "+ String.valueOf(Math.round((rateTo/rateFrom) * 5)/5));
-			 }
+			 v.setVisibility(0);			
 			 break;
+			 
 		 case 5:
 			 setTitle("Area Converter");
 			 adapter = ArrayAdapter.createFromResource(this, 
@@ -210,6 +199,7 @@ public class ConverterActivity extends Activity implements OnClickListener {
 			 
 			 obj = new AreaConversion();
 			 break;
+			 
 		 case 6:
 			 setTitle("Density Converter");
 			 adapter = ArrayAdapter.createFromResource(this, 
@@ -309,6 +299,7 @@ public class ConverterActivity extends Activity implements OnClickListener {
 					SoundPlayer.play(this, R.raw.answer);
 				}
 				break;
+				
 			case 1://Temp
 				//Get value from editbox
 				start = Double.valueOf(startValue.getText().toString());
@@ -345,6 +336,7 @@ public class ConverterActivity extends Activity implements OnClickListener {
 					SoundPlayer.play(this, R.raw.answer);
 				}
 				break;
+				
 			case 3://Distance
 				start = Double.valueOf(startValue.getText().toString());
 				
@@ -363,6 +355,7 @@ public class ConverterActivity extends Activity implements OnClickListener {
 					SoundPlayer.play(this, R.raw.answer);
 				}
 				break;
+				
 			case 4://Currency		
 				//cast object and call specific converter
 				//round value and set text
@@ -371,10 +364,10 @@ public class ConverterActivity extends Activity implements OnClickListener {
 						Double.valueOf(startValue.getText().toString())) * r)/r;
 				
 				//work around for USD
-				int index = (intNewSpnVal > 57)?intNewSpnVal:intNewSpnVal+1;
-				
+				 int indexNew = (intNewSpnVal > 57)?intNewSpnVal:intNewSpnVal+1;
+				 				
 				resultValue.setText(String.valueOf(result)
-						 + " " + datalist.getDescription().get(index));
+						 + " " + datalist.getDescription().get(indexNew));
 			
 				if(Settings.getVibrate(getBaseContext())){
 					v.vibrate(Settings.getVibrateInterval(getBaseContext()));
@@ -383,6 +376,7 @@ public class ConverterActivity extends Activity implements OnClickListener {
 					SoundPlayer.play(this, R.raw.answer);
 				}
 				break;
+				
 			case 5://Area
 				start = Double.valueOf(startValue.getText().toString());
 				
@@ -402,6 +396,7 @@ public class ConverterActivity extends Activity implements OnClickListener {
 					SoundPlayer.play(this, R.raw.answer);
 				}
 				break;
+				
 			case 6://Density
 				start = Double.valueOf(startValue.getText().toString());
 				
@@ -417,7 +412,8 @@ public class ConverterActivity extends Activity implements OnClickListener {
 				if(Settings.getSound(getBaseContext())){
 					SoundPlayer.play(this, R.raw.answer);
 				}
-				break;	
+				break;
+				
 			default:
 				//TODO send error
 				break;			
@@ -463,17 +459,12 @@ public class ConverterActivity extends Activity implements OnClickListener {
 				if(parent.getId() == R.id.spnFrom)
 					intOldSpnVal = pos;
 			
-				else if(parent.getId() == R.id.spnTo){
+				else if(parent.getId() == R.id.spnTo)//{
 					intNewSpnVal = pos;
-					if(datalist != null){
-						 //work around for USD
-						 int index = (intNewSpnVal > 57)?intNewSpnVal:intNewSpnVal+1;
-							
-						 //show rate in label
-						 TextView tv = (TextView)findViewById(R.id.lblRate);
-						 tv.setText(" Exchange rate: "+datalist.getRates().get(index));
-					 }
-				}
+				
+				//reset rate label with current exchange
+				//when any spinner changes
+				setRateLabel();
 				break;
 			case 5://Area
 			case 6://Density
@@ -489,7 +480,6 @@ public class ConverterActivity extends Activity implements OnClickListener {
 			}
 		}
 		
-
 		@Override
 		public void onNothingSelected(AdapterView<?> arg0) {
 			// TODO Auto-generated method stub	
@@ -516,7 +506,6 @@ public class ConverterActivity extends Activity implements OnClickListener {
 	 */
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		//check if this activity should be "refreshed"
 		//stop and start activity if true
 		if(Settings.getCRefresh()){
@@ -536,7 +525,6 @@ public class ConverterActivity extends Activity implements OnClickListener {
 
 		new Thread(new Runnable(){
 			public void run() {								
-				// TODO Auto-generated method stub
 				obj = new CurrencyConversion(getBaseContext());
 				handler.sendEmptyMessage(0);
 			}														
@@ -550,16 +538,27 @@ public class ConverterActivity extends Activity implements OnClickListener {
         	datalist = XMLHandler.getDataList();
         	//if we don't set rate label here as well
         	//rate wont show when activity starts(due to the threading)
-        	if(datalist != null){
-	   			 //work around for USD
-	   			 int index = (intNewSpnVal > 57)?intNewSpnVal:intNewSpnVal+1;
-	   				
-	   			 //show rate in label
-	   			 TextView tv = (TextView)findViewById(R.id.lblRate);
-	   			 tv.setText(" Exchange rate: "+datalist.getRates().get(index));
-   		 	}
+        	setRateLabel();
             pd.dismiss();
         }
 	};
+	
+	//sets the rate label with correct rate which is 
+	//rate converting to divided by rate converting from
+	//moved this code to method as it is called multiple locations
+	private void setRateLabel(){
+		if(datalist != null){
+    		//work around for USD
+			 int indexOld = (intOldSpnVal > 57)?intOldSpnVal:intOldSpnVal+1;
+			 int indexNew = (intNewSpnVal > 57)?intNewSpnVal:intNewSpnVal+1;
+			 
+			 //display exchange rate which is rate to / rate from
+			 double rateTo = Double.valueOf(datalist.getRates().get(indexNew)),
+					 rateFrom = Double.valueOf(datalist.getRates().get(indexOld));
+			 //show rate in label
+			 TextView tv = (TextView)findViewById(R.id.lblRate);
+			 tv.setText(" Exchange rate: " 
+					 + new DecimalFormat("0.00000").format(rateTo/rateFrom));
+		 }
+	}
 }
-

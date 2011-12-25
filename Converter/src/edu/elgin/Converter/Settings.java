@@ -39,7 +39,7 @@ public class Settings<SharedPreference> extends PreferenceActivity implements On
 		
 		//find preference and set on click listener
 		Preference themePref = findPreference("change_theme");
-		Preference themePref2 = findPreference("color_dialog");
+		//Preference themePref2 = findPreference("color_dialog");
 		themePref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			 
             public boolean onPreferenceClick(Preference preference) {        

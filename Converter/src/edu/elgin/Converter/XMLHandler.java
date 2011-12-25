@@ -4,8 +4,6 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import android.util.Log;
-
 /**
  * 
  * @author Sean Vogel 
@@ -19,7 +17,7 @@ import android.util.Log;
  */
 public class XMLHandler extends DefaultHandler {
 
-	private final String TAG = "Converter";//dbg
+	//private final String TAG = "Converter";//dbg
 	
 	String currentValue = null;
 	
@@ -39,7 +37,7 @@ public class XMLHandler extends DefaultHandler {
 	@Override
 	public void startElement(String uri, String localName, String qName,
 			Attributes attributes) throws SAXException {
-		//Log.d(TAG,"XMLHandler startElement, localName = "+localName);
+		//Log.d(TAG,"XMLHandler startElement, localName = "+localName);//dbg
 		
 		//first tag in feed
 		//instantiate list

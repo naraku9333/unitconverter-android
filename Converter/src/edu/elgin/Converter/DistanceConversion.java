@@ -63,72 +63,46 @@ public class DistanceConversion {
 			}
 			switch(to){
 			case 0:
-				result = result * 100000000;
-				
+				result = result * 100000000;				
 				break;
 			case 1:
-				result = result * 10000000;
-				
+				result = result * 10000000;				
 				break;
 			case 2:
-				result = result * 393700.8;
-				
-				
+				result = result * 393700.8;								
 				break;
 			case 3:
-				result = result * 10000;
-				
-				
+				result = result * 10000;								
 				break;
 			case 4:
-				result = result * 393.7008;
-				
-				
+				result = result * 393.7008;								
 				break;
 			case 5:
-				result = result * 10;
-				
-				
+				result = result * 10;								
 				break;
 			case 6:
-				result = result * .3937008;
-				
-				
-				break;
-			
+				result = result * .3937008;								
+				break;			
 			case 8:
-				result = result * .1;
-				
-				
+				result = result * .1;								
 				break;
 			case 9:
-				result = result * .0328084;
-				
-				
+				result = result * .0328084;								
 				break;
 			case 10:
-				result =result * .01;
-				
-				
+				result =result * .01;								
 				break;
 			case 11:
-				result = result * .01093613;
-				
-				
+				result = result * .01093613;								
 				break;
 			case 12:
-				result = result * .00001;
-				
-				
+				result = result * .00001;								
 				break;
 			case 13:
-				result = result * .000006213712;
-				
-				
+				result = result * .000006213712;							
 				break;
 			default:
-				break;
-			
+				break;			
 			}
 			return result;
 		}
